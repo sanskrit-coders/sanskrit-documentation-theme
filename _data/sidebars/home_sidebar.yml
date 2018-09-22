@@ -9,6 +9,6 @@ contents:
       - title: README
         url: /README.html
       - title: LICENSE
-        url: /LICENSE-MIT-SANSKRIT-DOC-THEME.txt
+        url: /licenses/LICENSE-MIT-SANSKRIT-DOC-THEME.txt
   - title: Blog
     url: /assets/blog/index.html
