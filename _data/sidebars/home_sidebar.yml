@@ -1,0 +1,14 @@
+# This is your sidebar TOC. The sidebar code loops through sections here and provides the appropriate formatting.
+
+title: Parts
+contents:
+  - title: Home - Intro
+    url: /index.html
+  - title: Technical details
+    contents:
+      - title: README
+        url: /README.html
+      - title: LICENSE
+        url: /LICENSE.txt
+  - title: Blog
+    url: /assets/blog/index.html
