@@ -27,33 +27,25 @@ To experiment with this code, add some sample content and run `bundle exec jekyl
 
 [![Screenshot 1](https://i.imgur.com/2ggUjKK.png)](https://i.imgur.com/2ggUjKK.png){:target="_blank"}
 
-## Installation
-### Direct method
-- Add this line to your Jekyll site's `Gemfile`:
-```ruby
-gem "sanskrit-documentation-theme"
-```
-- And add this line to your Jekyll site's `_config.yml`:
-```yaml
-theme: sanskrit-documentation-theme
-```
-- And then execute `bundle` Or install it yourself as: `gem install sanskrit-documentation-theme`
-
-### Remote theme method
-- Add this line to your Jekyll site's `_config.yml`:
-`remote_theme: sanskrit-coders/sanskrit-documentation-theme`
-
 ## Usage
+Take a look at this very repository for an example!
 
-Take a look at this very repository for an example! In particular, note the files that you would need to add / modify as needed:
+In particular, note the files that you would need to add / modify as needed:
 - the `_config.yml` file.
+  - Especially, specify that you're using this theme by either adding `remote_theme: sanskrit-coders/sanskrit-documentation-theme` or `theme: sanskrit-documentation-theme` (In which case you'd need to install the theme gem).
 - The _data/sidebars/*.yml file, which defines the contents of the sidebar and top navigation menu you see for each page.
 - The 404.md file, which defines how the "Page Not Found" results look like.
-- Gemfile (just make a copy)
+- The Gemfile : no modification needed.
+
+### Installation
+PS: Installation is not needed if you are using the 'remote-theme' method described above.
+
+Steps:
+- Add this line to your Jekyll site's `Gemfile`: `gem "sanskrit-documentation-theme"`
+- Execute `bundle` Or install it yourself as: `gem install sanskrit-documentation-theme`
 
 ### Search / webmaster tips
-- assets/sitemap.xml can be submitted.
-
+- sitemap.xml can be explicitly submitted to various search engines.
 
 ## Contributing
 
