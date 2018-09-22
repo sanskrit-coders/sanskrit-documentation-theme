@@ -28,7 +28,7 @@ To experiment with this code, add some sample content and run `bundle exec jekyl
 [![Screenshot 1](https://i.imgur.com/2ggUjKK.png)](https://i.imgur.com/2ggUjKK.png){:target="_blank"}
 
 ## Installation
-
+### Direct method
 - Add this line to your Jekyll site's `Gemfile`:
 ```ruby
 gem "sanskrit-documentation-theme"
@@ -37,13 +37,11 @@ gem "sanskrit-documentation-theme"
 ```yaml
 theme: sanskrit-documentation-theme
 ```
-- And then execute:
-    $ bundle
+- And then execute `bundle` Or install it yourself as: `gem install sanskrit-documentation-theme`
 
-- Or install it yourself as:
-    $ gem install sanskrit-documentation-theme
-
-
+### Remote theme method
+- Add this line to your Jekyll site's `_config.yml`:
+`remote_theme: sanskrit-coders/sanskrit-documentation-theme`
 
 ## Usage
 
