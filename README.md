@@ -20,8 +20,6 @@ Some notable things you get with this theme (in decreasing order of interest):
 - the usual Jekyll blog.
   - Post tag support
 
-To experiment with this code, add some sample content and run `bundle exec jekyll serve` – this directory is setup just like a Jekyll site!
-
 ### Screenshots and examples
 - See this test site: <https://sanskrit-coders.github.io/sanskrit-documentation-theme/>!
 
@@ -48,6 +46,7 @@ Steps:
 - sitemap.xml can be explicitly submitted to various search engines.
 
 ## Contributing
+To experiment with this code, add some sample content and run `bundle exec jekyll serve` – this directory is setup just like a Jekyll site!
 
 Bug reports and pull requests are welcome on GitHub. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
 
