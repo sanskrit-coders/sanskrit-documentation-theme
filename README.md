@@ -3,10 +3,9 @@ title: Sanskrit documentation theme- README
 tags: [getting_started]
 ---
 
-
 ## Intro
 
-This is the Sanskrit documentation theme for use with the Jekyll static website generator.
+This is the "Sanskrit" collaborative documentation theme for use with the Jekyll static website generator.
 
 Some notable things you get with this theme (in decreasing order of interest):
 - A collapsible "accordion" sidebar
@@ -17,14 +16,16 @@ Some notable things you get with this theme (in decreasing order of interest):
 - Google custom search configuration
 - Disqus for comments.
 - Google analytics configuration
+- Special formatting consideration for fonts which need to be displayed bigger (eg: Devanagari for sanskrit.)
 - the usual Jekyll blog.
   - Post tag support
 
 To experiment with this code, add some sample content and run `bundle exec jekyll serve` – this directory is setup just like a Jekyll site!
 
 ### Screenshots and examples
-- See this test site: <>!
+- See this test site: <https://sanskrit-coders.github.io/sanskrit-documentation-theme/>!
 
+[![Screenshot 1](https://i.imgur.com/2ggUjKK.png)](https://i.imgur.com/2ggUjKK.png){:target="_blank"}
 
 ## Installation
 
@@ -50,9 +51,15 @@ Or install it yourself as:
 
 ## Usage
 
-Take a look at this very repository for an example! In particular, note:
+Take a look at this very repository for an example! In particular, note the files that you would need to add / modify as needed:
 - the `_config.yml` file.
 - The _data/home_sidebar.yml file, which defines the contents of the sidebar/ dropdown menu you see for each page.
+- The 404.md file, which defines how the "Page Not Found" results look like.
+- Gemfile (just make a copy)
+
+### Search / webmaster tips
+- assets/sitemap.xml can be submitted.
+
 
 ## Contributing
 

@@ -84,7 +84,7 @@ p.external a {
     display:inline;
 }
 
-*[language="sa"] {
+*[unicode_script="devanagari"] {
     font-face: 'Noto Sans Devanagari From Github Hinted', serif;
     font-size: 150%;
 }

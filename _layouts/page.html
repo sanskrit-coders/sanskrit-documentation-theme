@@ -27,7 +27,7 @@ layout: default
 {% include custom/{{page.map_name}}.html %}
 
 {% endif %}
-<div class="post-content" page_script="{{ page.script }}">
+<div class="post-content" unicode_script="{{ page.unicode_script }}">
 
    {% if page.summary %}
     <div class="summary">{{page.summary}}</div>
@@ -53,7 +53,7 @@ layout: default
         {% assign projectTags = site.data.tags.allowed-tags %}
         {% for tag in page.tags %}
         {% if projectTags contains tag %}
-        <a href="{{site.baseurl}}{{ "/page/tags/" | append: tag | append: ".html" }}" class="btn btn-default navbar-btn cursorNorm" role="button">{{page.tagName}}{{tag}}</a>
+        <a href="{{site.baseurl}}{{ "/tags/" | append: tag | append: ".html" }}" class="btn btn-default navbar-btn cursorNorm" role="button">{{page.tagName}}{{tag}}</a>
         {% endif %}
         {% endfor %}
         {% endif %}
