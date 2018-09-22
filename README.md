@@ -47,7 +47,7 @@ theme: sanskrit-documentation-theme
 
 Take a look at this very repository for an example! In particular, note the files that you would need to add / modify as needed:
 - the `_config.yml` file.
-- The _data/home_sidebar.yml file, which defines the contents of the sidebar/ dropdown menu you see for each page.
+- The _data/sidebars/*.yml file, which defines the contents of the sidebar and top navigation menu you see for each page.
 - The 404.md file, which defines how the "Page Not Found" results look like.
 - Gemfile (just make a copy)
 

@@ -83,7 +83,7 @@ defaults:
       comments: true
       search: true
       sidebar: home_sidebar
-      topnav: home_sidebar
+      topnav: top_bar
   -
     scope:
       path: ""
