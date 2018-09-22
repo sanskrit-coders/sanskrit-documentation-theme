@@ -29,25 +29,21 @@ To experiment with this code, add some sample content and run `bundle exec jekyl
 
 ## Installation
 
-Add this line to your Jekyll site's `Gemfile`:
-
+- Add this line to your Jekyll site's `Gemfile`:
 ```ruby
 gem "sanskrit-documentation-theme"
 ```
-
-And add this line to your Jekyll site's `_config.yml`:
-
+- And add this line to your Jekyll site's `_config.yml`:
 ```yaml
 theme: sanskrit-documentation-theme
 ```
-
-And then execute:
-
+- And then execute:
     $ bundle
 
-Or install it yourself as:
-
+- Or install it yourself as:
     $ gem install sanskrit-documentation-theme
+
+
 
 ## Usage
 
@@ -72,6 +68,11 @@ Your theme is setup just like a normal Jekyll site! To test your theme, run `bun
 
 When your theme is released, only the files in `_layouts`, `_includes`, `_sass` and `assets` tracked with Git will be bundled.
 To add a custom directory to your theme-gem, please edit the regexp in `sanskrit-documentation-theme.gemspec` accordingly.
+
+### Publishing to RubyGems.org
+- Update `sanskrit-documentation-theme.gemspec`
+- `gem build *.gemspec`
+- `gem push *.gem`
 
 ## License and acknowledgement
 We fork off the [tomjoht/documentation-theme-jekyll](http://github.com/tomjoht/documentation-theme-jekyll) theme.
