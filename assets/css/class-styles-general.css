@@ -85,7 +85,7 @@ p.external a {
 }
 
 *[unicode_script="devanagari"] {
-    font-face: 'siddhanta-cakravat1, Noto Sans Devanagari From Github Hinted', serif;
+    font-face: siddhanta-cakravat1, 'Noto Sans Devanagari From Github Hinted', serif;
     font-size: 150%;
 }
 
