@@ -9,9 +9,14 @@ This is a site to test the Sanskrit documentation theme. This is a dummy page. B
 
 ## Section 1
 <div unicode_script="devanagari">
-हरिः, ॐ! स्वागतम्! Devanagari text is sized bigger.
+हरिः, ॐ! स्वागतम्! Devanagari text: bigger and uses a special font.
 </div>
  - because we used the `unicode_script="devanagari"` class (which can also be used as a page property.)
+
+<div class="bs-callout-warning">
+  This is a `bs-callout-warning` element!
+</div>
+
 
 ### Section 1.1
 content 1.1
