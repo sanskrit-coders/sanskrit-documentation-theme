@@ -2,7 +2,7 @@
 @font-face {
     font-family: 'siddhanta-cakravat1';
     font-style: normal;
-    font-weight: 400;
+    font-weight: normal;
     src: url(https://raw.githubusercontent.com/sanskrit-coders/sanskrit-fonts/master/fonts/ttf-devanagari-fonts/siddhanta-variations/siddhanta-cakravat1.ttf) format('truetype');
 }
 
@@ -10,7 +10,7 @@
 @font-face {
     font-family: 'Noto Sans Devanagari From Github Hinted';
     font-style: normal;
-    font-weight: 400;
+    font-weight: normal;
     src: url(https://raw.githubusercontent.com/googlei18n/noto-fonts/master/hinted/NotoSansDevanagari-Regular.ttf) format('truetype');
 }
 /************************************************************/

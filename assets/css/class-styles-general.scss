@@ -105,14 +105,14 @@
 
 p.external a {
   text-align: right;
-  font-size: 12px;
+  font-size: 80%;
   color: #0088cc;
   display: inline;
 }
 
 *[unicode_script="devanagari"] {
   font-family: 'siddhanta-cakravat1', 'Noto Sans Devanagari From Github Hinted', serif;
-  font-size: 150%;
+  font-size: 130%;
 }
 
 /************************************************************/
@@ -146,12 +146,12 @@ p.post-meta {
 }
 
 .post-meta {
-  font-size: 14px;
+  font-size: 90%;
   color: #828282;
 }
 
 .post-link {
-  font-size: 22px;
+  font-size: 150%;
 }
 
 .post-list p {
@@ -193,7 +193,7 @@ p.post-meta {
   border-radius: 5px;
   margin-top: 50px;
   font-style: italic;
-  font-size: 12px;
+  font-size: 80%;
 }
 
 /************************************************************/
@@ -261,10 +261,10 @@ p.post-meta {
   height: 80px;
   background-color: #f5f5f5;
   font-family: Arial;
-  font-size: 12px;
+  font-size: 80%;
   hyphens: auto;
   float: left;
-  font-size: 12px;
+  font-size: 80%;
   &:hover {
     background-color: #f0f0f0;
   }
@@ -275,7 +275,7 @@ p.post-meta {
 
 #search-demo-container ul#results-container {
   list-style: none;
-  font-size: 12px;
+  font-size: 80%;
   background-color: white;
   position: absolute;
   top: 40px;
@@ -301,7 +301,7 @@ ul#results-container a {
   padding: .5em;
   margin-left: 20px;
   width: 20em;
-  font-size: 0.8em;
+  font-size: 80%;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;

@@ -18,8 +18,6 @@ pre, table code {
   /* css-3 */
   white-space: -moz-pre-wrap;
   /* Mozilla, since 1999 */
-  white-space: -pre-wrap;
-  /* Opera 4-6 */
   white-space: -o-pre-wrap;
   /* Opera 7 */
   word-wrap: break-word;
@@ -80,36 +78,47 @@ h1[id], h2[id], h3[id], h4[id], h5[id], h6[id], dt[id] {
   margin-top: -40px;
 }
 
-h4.panel-title {
-  padding-top: 0px;
-  margin-top: 0px;
+h1 {
+  color: #015CAE;
+  font-size: 250% !important;
+  font-weight: bold;
 }
-
-h3 {
-  color: #ED1951;
-  font-weight: normal;
-  font-size: 130%;
-}
-
-h4 {
-  color: #808080;
-  font-weight: normal;
-  font-size: 120%;
-  font-style: italic;
-}
-
 h2 {
   &.userMapTitle {
     font-family: Arial;
   }
-  font-size: 24px;
-  line-height: 29px;
+  font-size: 220% !important;
+  line-height: 150%;
+  font-weight: bold;
+}
+h3 {
+  color: #ED1951;
+  font-size: 180% !important;
+  font-weight: bold;
+}
+h4 {
+  font-size: 150% !important;
+  font-weight: bold;
+  &.panel-title {
+    padding-top: 0px;
+    margin-top: 0px;
+  }
+}
+h5 {
+  font-size: 130% !important;
+  font-weight: bold;
+}
+
+h6 {
+  font-size: 120% !important;
+  font-weight: bold;
+  font-style: italic;
 }
 
 /************************************************************/
 
-body {
-  font-size: 15px;
+html, body {
+  font-size: 100%;
 }
 
 div {
@@ -133,12 +142,12 @@ div {
     max-width: 50px;
     margin-left: 15px;
     margin-right: 15px;
-    font-size: 20px;
+    font-size: 120%;
   }
 }
 
 figcaption {
-  padding-bottom: 12px;
+  padding-bottom: 80%;
   padding-top: 6px;
   max-width: 90%;
   margin-bottom: 20px;

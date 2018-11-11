@@ -60,12 +60,12 @@ li.dropdownActive a {
 /* FAQ page */
 
 #accordion .panel-heading {
-  font-size: 18px;
+  font-size: 110%;
 }
 
 a {
   &.accordion-toggle, &.accordion-collapsed {
-    font-size: 18px;
+    font-size: 110%;
     text-decoration: none;
   }
 }
@@ -81,7 +81,7 @@ a {
   }
   ul {
     padding: 0;
-    /*margin: 0 0 0 18px;*/
+    /*margin: 0 0 0 110%;*/
     margin: 0px;
   }
   /* padding: 4px;*/
@@ -105,7 +105,7 @@ a {
   li {
     > a > span {
       float: right;
-      font-size: 19px;
+      font-size: 130%;
       font-weight: bolder;
       &:after {
         content: '\25be';
@@ -125,7 +125,7 @@ a {
       color: #f5f5f5;
     }
     a {
-      font-size: 18px;
+      font-size: 110%;
       line-height: 20px;
       padding: 2px 10px;
       background-color: #f1f1f1;
@@ -135,7 +135,7 @@ a {
     background-color: #347DBE;
   }
   > li > a {
-    font-size: 18px;
+    font-size: 110%;
     line-height: 20px;
     padding: 4px 10px;
   }
@@ -172,7 +172,7 @@ ul#displayed_sidebar {
     &.series {
       li {
         list-style: decimal;
-        font-size: 12px;
+        font-size: 80%;
         a:hover {
           background-color: gray;
         }
@@ -202,7 +202,7 @@ div#toc ul li ul li {
 .seriesContext .dropdown-menu li.active {
   font-weight: bold;
   margin-left: 43px;
-  font-size: 18px;
+  font-size: 110%;
 }
 
 li.activeSeries {
