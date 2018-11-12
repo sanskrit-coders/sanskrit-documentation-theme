@@ -5,7 +5,7 @@
 /************************************************************/
 /* Some boxes*/
 
-.sanskrit_inline_comment {
+.inline_comment {
   font-size: 70%;
   color: red;
   display: inline;
@@ -121,6 +121,14 @@ p.external a {
   font-size: 130%;
 }
 
+*[emphasis_as_inline_comments] {
+  em {
+    // Copied from inline_comments class above.
+    font-size: 70%;
+    color: red;
+    display: inline;
+  }
+}
 /************************************************************/
 
 p.post-meta {

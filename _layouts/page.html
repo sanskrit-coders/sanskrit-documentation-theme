@@ -27,7 +27,10 @@ layout: default
 {% include custom/{{page.map_name}}.html %}
 
 {% endif %}
-<div class="post-content" unicode_script="{{ page.unicode_script }}">
+<div class="post-content" unicode_script="{{ page.unicode_script }}"
+     {% if page.emphasis_as_inline_comments %} emphasis_as_inline_comments
+     {% endif %}
+>
 
    {% if page.summary %}
     <div class="summary">{{page.summary}}</div>
@@ -47,9 +50,9 @@ layout: default
     
     {% if page.format_inline_comments %}
         {% assign inline_comment_type1_regex = '\[\[(.+?)\]\]' %}
-        {% assign inline_comment_type1_regex_replacement = '<div class="sanskrit_inline_comment">[\1]</div>' %}
+        {% assign inline_comment_type1_regex_replacement = '<div class="inline_comment">[\1]</div>' %}
         {% assign inline_comment_type2_regex = '\(=(.+?)\)' %}
-        {% assign inline_comment_type2_regex_replacement = '<div class="sanskrit_inline_comment">(=\1)</div>' %}
+        {% assign inline_comment_type2_regex_replacement = '<div class="inline_comment">(=\1)</div>' %}
         {% assign dummy_example = '(=कश्चित्)' %}
         <!--Handles stuff like: जरते (=स्तौति) स्वा॒धीः or त्रे॒धा {रूपाणि अग्नि-विद्युत्-सूर्यास्} त्र॒याणि॑-->
         {{content| replace_regex: inline_comment_type1_regex,  inline_comment_type1_regex_replacement |  replace_regex: inline_comment_type2_regex,  inline_comment_type2_regex_replacement}}
