@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |spec|
   spec.name          = "sanskrit-documentation-theme"
-  spec.version       = "0.1.3"
+  spec.version       = "0.1.4"
   spec.authors       = ["vvasuki"]
   spec.email         = ["sanskrit-programmers@googlegroups.com"]
 
@@ -16,6 +16,7 @@ Gem::Specification.new do |spec|
   spec.add_runtime_dependency "jekyll-seo-tag", "~> 2.0"
   spec.add_runtime_dependency "jekyll-feed", "~> 0.9"
   spec.add_runtime_dependency "jekyll-sitemap", "~> 1.2.0"
+  spec.add_runtime_dependency "jekyll-regex-replace", "~> 1.0.0"
 
   spec.add_development_dependency "bundler", "~> 1.16"
   spec.add_development_dependency "rake", "~> 12.0"
