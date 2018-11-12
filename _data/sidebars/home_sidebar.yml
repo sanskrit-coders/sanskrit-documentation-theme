@@ -4,6 +4,8 @@ title: Parts
 contents:
   - title: Home - Intro
     url: /index.html
+  - title: देवनागर्युदाहरणम्
+    url: /dummy_devanagari.html
   - title: Technical details
     contents:
       - title: README
