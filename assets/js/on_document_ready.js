@@ -54,3 +54,9 @@ $(function() {
         }
     });
 });
+
+// Process includes of the form:
+// <div class="js_include" url="index.md"/> 
+$( document ).ready(function() {
+   // TODO:  Try ideas from https://stackoverflow.com/questions/38446162/get-content-from-another-page-with-javascript .
+});
