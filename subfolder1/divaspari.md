@@ -5,6 +5,8 @@ emphasis_as_inline_comments: true
 ---    
     
 ---    
+![](http://vvasuki.github.io/notes/mantra/agni/images/agni-at-dawn.jpg){:.thumbnail}
+
 
 ## दवानलः  
 ![](images/forest-fire.jpg){:.thumbnail}  

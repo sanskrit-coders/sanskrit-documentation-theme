@@ -54,6 +54,13 @@ $(function() {
 Example: absoluteUrl("../subfolder1/divaspari.md", "images/forest-fire.jpg") == "../subfolder1/images/forest-fire.jpg"
  */
 function absoluteUrl(base, relative) {
+    // console.debug(base, relative);
+    if (relative.startsWith("http") || relative.startsWith("file")) {
+        return relative;
+    }
+    if (relative.startsWith("/") && !base.startsWith("http") && !base.startsWith("file")) {
+        return relative;
+    }
     var stack = base.split("/"),
         parts = relative.split("/");
     stack.pop(); // remove current file name (or empty string)
