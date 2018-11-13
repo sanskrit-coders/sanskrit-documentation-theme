@@ -51,14 +51,33 @@ $(function() {
     });
 });
 
+/*
+Example: absoluteUrl("../subfolder1/divaspari.md", "images/forest-fire.jpg") == "../subfolder1/images/forest-fire.jpg"
+ */
+function absoluteUrl(base, relative) {
+    var stack = base.split("/"),
+        parts = relative.split("/");
+    stack.pop(); // remove current file name (or empty string)
+                 // (omit if "base" is the current folder without trailing slash)
+    for (var i=0; i<parts.length; i++) {
+        if (parts[i] == ".")
+            continue;
+        if (parts[i] == "..")
+            stack.pop();
+        else
+            stack.push(parts[i]);
+    }
+    return stack.join("/");
+}
+
 // Process includes of the form:
 // <div class="js_include" url="index.md"/> 
 $( document ).ready(function() {
     $('.js_include').each(function() {
         var jsIncludeJqueryElement = $(this);
         // console.log(jsIncludeJqueryElement);
-        var url = jsIncludeJqueryElement.attr("url").replace(".md", ".html");
-        $.ajax(url,{
+        var includedPageUrl = jsIncludeJqueryElement.attr("url").replace(".md", ".html");
+        $.ajax(includedPageUrl,{
             success: function(responseHtml) {
                 var contentElements = $(responseHtml).find(".post-content");
                 // console.log(contentElements);
@@ -68,10 +87,26 @@ $( document ).ready(function() {
                 } else {
                     var contentElement = contentElements[0];
                     jsIncludeJqueryElement.html(contentElement);
+                    
+                    /*
+                    Fix headers in the included html so as to not mess up the table of contents 
+                    of the including page.
+                    Adjusting the heading levels to retain substructure seems more complicated -
+                    getting the heading "under" which jsIncludeJqueryElement falls seems non-trivial.
+                     */
                     jsIncludeJqueryElement.find(":header").replaceWith(function() {
                         return $("<h6 />").append($(this).contents());
                     });
-                    // TODO: Fix image urls.
+
+                    // Fix image urls.
+                    jsIncludeJqueryElement.find("img").each(function() {
+                        $(this).attr("src", absoluteUrl(includedPageUrl, $(this).attr("src")));
+                    });
+
+                    // Fix links.
+                    jsIncludeJqueryElement.find("a").each(function() {
+                        $(this).attr("href", absoluteUrl(includedPageUrl, $(this).attr("href")));
+                    });
                 }
             }
         });
