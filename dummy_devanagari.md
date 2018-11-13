@@ -13,4 +13,6 @@ emphasis_as_inline_comments: true
 वि॒द्मा ते॒ नाम॑ पर॒मं गुहा॒ यद्  
 वि॒द्मा तमुत्सं॒ _(=fount)_ यत॑ आज॒गन्थ॑ ।
 
-<div class="js_include" url="index.md"/>  
+
+
+<div class="js_include" url="index.md"> </div>  

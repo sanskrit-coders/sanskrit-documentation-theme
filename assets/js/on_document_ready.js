@@ -10,10 +10,6 @@ $( document ).ready(function() {
     if (h > 800) {
         $( "#displayed_sidebar" ).attr("class", "nav affix");
     }
-    // activate tooltips. although this is a bootstrap js function, it must be activated this way in your theme.
-    $('[data-toggle="tooltip"]').tooltip({
-        placement : 'top'
-    });
 
     /**
      * AnchorJS
@@ -58,5 +54,26 @@ $(function() {
 // Process includes of the form:
 // <div class="js_include" url="index.md"/> 
 $( document ).ready(function() {
-   // TODO:  Try ideas from https://stackoverflow.com/questions/38446162/get-content-from-another-page-with-javascript .
+    $('.js_include').each(function() {
+        var jsIncludeJqueryElement = $(this);
+        // console.log(jsIncludeJqueryElement);
+        var url = jsIncludeJqueryElement.attr("url").replace(".md", ".html");
+        $.ajax(url,{
+            success: function(responseHtml) {
+                var contentElements = $(responseHtml).find(".post-content");
+                // console.log(contentElements);
+                if (contentElements.length == 0) {
+                    console.warn("Could not get \"post-content\" class element.");
+                    console.log(responseHtml);
+                } else {
+                    var contentElement = contentElements[0];
+                    jsIncludeJqueryElement.html(contentElement);
+                    jsIncludeJqueryElement.find(":header").replaceWith(function() {
+                        return $("<h6 />").append($(this).contents());
+                    });
+                    // TODO: Fix image urls.
+                }
+            }
+        });
+    });
 });
