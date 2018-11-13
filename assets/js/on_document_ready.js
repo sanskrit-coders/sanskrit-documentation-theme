@@ -1,6 +1,5 @@
 $('#displayed_sidebar').height($(".nav").height());
 
-
 $( document ).ready(function() {
 
     //this script says, if the height of the viewport is greater than 800px, then insert affix class, which makes the nav bar float in a fixed
@@ -72,9 +71,12 @@ function absoluteUrl(base, relative) {
 
 // WHen you include html from one page within another, you need to fix image urls, anchor urls etc..
 function fixIncludedHtml(url, html) {
-
+    // We want to use jquery to parse html, but without loading images. Hence this.
+    // Tip from: https://stackoverflow.com/questions/15113910/jquery-parse-html-without-loading-images
+    var virtualDocument = document.implementation.createHTMLDocument('virtual');
+    var jqueryElement = $(html, virtualDocument);
     // Deal with includes within includes. Do this before fixing images urls etc.. because there may be images within the newly included html.
-    $(html).find('.js_include').each(function() {
+    jqueryElement.find('.js_include').each(function() {
         fillJsInclude($(this));
     });
     
@@ -84,34 +86,48 @@ function fixIncludedHtml(url, html) {
     Adjusting the heading levels to retain substructure seems more complicated -
     getting the heading "under" which jsIncludeJqueryElement falls seems non-trivial.
      */
-    $(html).find(":header").replaceWith(function() {
+    jqueryElement.find(":header").replaceWith(function() {
         return $("<h6 />").append($(this).contents());
     });
 
     // Fix image urls.
-    $(html).find("img").each(function() {
+    jqueryElement.find("img").each(function() {
+        // console.log(absoluteUrl(url, $(this).attr("src")));
+        // console.log($(this).attr("src"))
         $(this).attr("src", absoluteUrl(url, $(this).attr("src")));
+        // console.log($(this).attr("src"))
     });
 
     // Fix links.
-    $(html).find("a").each(function() {
+    jqueryElement.find("a").each(function() {
         $(this).attr("href", absoluteUrl(url, $(this).attr("href")));
     });
 
-    return $(html);
+    // Remove some tags.
+    jqueryElement.find("script").remove();
+    jqueryElement.find("#disqus_thread").remove();
+
+    return jqueryElement;
 }
 
 function fillJsInclude(jsIncludeJqueryElement) {
     var includedPageUrl = jsIncludeJqueryElement.attr("url").replace(".md", ".html");
     $.ajax(includedPageUrl,{
         success: function(responseHtml) {
-            var contentElements = $(responseHtml).find(".post-content");
+            // We want to use jquery to parse html, but without loading images. Hence this.
+            // Tip from: https://stackoverflow.com/questions/15113910/jquery-parse-html-without-loading-images
+            var virtualDocument = document.implementation.createHTMLDocument('virtual');
+
+            var contentElements = $(responseHtml, virtualDocument).find(".post-content");
             // console.log(contentElements);
             if (contentElements.length == 0) {
                 console.warn("Could not get \"post-content\" class element.");
                 console.log(responseHtml);
             } else {
-                var contentElement = fixIncludedHtml(includedPageUrl, contentElements[0]);
+                // We don't want multiple post-content divs, hence we replace with an included-post-content div.
+                var elementToInclude = $("<div class='included-post-content'/>")
+                elementToInclude.html(contentElements[0].innerHTML);
+                var contentElement = fixIncludedHtml(includedPageUrl, elementToInclude);
                 jsIncludeJqueryElement.html(contentElement);
             }
         }

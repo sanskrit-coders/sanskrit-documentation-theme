@@ -1,7 +1,6 @@
 ---    
 title: दिवस्परि  
 unicode_script: devanagari  
-format_inline_comments: true  
 emphasis_as_inline_comments: true
 ---    
     
