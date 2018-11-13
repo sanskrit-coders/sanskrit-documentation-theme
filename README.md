@@ -10,8 +10,9 @@ This is the "Sanskrit" collaborative documentation theme for use with the Jekyll
 Some notable things you get with this theme (in decreasing order of interest):
 - A collapsible "accordion" sidebar
 - A collapsible "accordion" table-of-contents for each page.
-- A layout which automatically
+- A layout which automatically adjusts to the user's screen size. 
 - An "Edit me" link on top of each page.
+- Basic ability to include contents from another page using the same theme within anoher. 
 - Search engine optimization and webmaster stuff - which you would use with various search engines.
 - Google custom search configuration
 - Disqus for comments.

@@ -70,45 +70,60 @@ function absoluteUrl(base, relative) {
     return stack.join("/");
 }
 
+// WHen you include html from one page within another, you need to fix image urls, anchor urls etc..
+function fixIncludedHtml(url, html) {
+
+    // Deal with includes within includes. Do this before fixing images urls etc.. because there may be images within the newly included html.
+    $(html).find('.js_include').each(function() {
+        fillJsInclude($(this));
+    });
+    
+    /*
+    Fix headers in the included html so as to not mess up the table of contents 
+    of the including page.
+    Adjusting the heading levels to retain substructure seems more complicated -
+    getting the heading "under" which jsIncludeJqueryElement falls seems non-trivial.
+     */
+    $(html).find(":header").replaceWith(function() {
+        return $("<h6 />").append($(this).contents());
+    });
+
+    // Fix image urls.
+    $(html).find("img").each(function() {
+        $(this).attr("src", absoluteUrl(url, $(this).attr("src")));
+    });
+
+    // Fix links.
+    $(html).find("a").each(function() {
+        $(this).attr("href", absoluteUrl(url, $(this).attr("href")));
+    });
+
+    return $(html);
+}
+
+function fillJsInclude(jsIncludeJqueryElement) {
+    var includedPageUrl = jsIncludeJqueryElement.attr("url").replace(".md", ".html");
+    $.ajax(includedPageUrl,{
+        success: function(responseHtml) {
+            var contentElements = $(responseHtml).find(".post-content");
+            // console.log(contentElements);
+            if (contentElements.length == 0) {
+                console.warn("Could not get \"post-content\" class element.");
+                console.log(responseHtml);
+            } else {
+                var contentElement = fixIncludedHtml(includedPageUrl, contentElements[0]);
+                jsIncludeJqueryElement.html(contentElement);
+            }
+        }
+    });
+}
+
 // Process includes of the form:
 // <div class="js_include" url="index.md"/> 
 $( document ).ready(function() {
     $('.js_include').each(function() {
         var jsIncludeJqueryElement = $(this);
         // console.log(jsIncludeJqueryElement);
-        var includedPageUrl = jsIncludeJqueryElement.attr("url").replace(".md", ".html");
-        $.ajax(includedPageUrl,{
-            success: function(responseHtml) {
-                var contentElements = $(responseHtml).find(".post-content");
-                // console.log(contentElements);
-                if (contentElements.length == 0) {
-                    console.warn("Could not get \"post-content\" class element.");
-                    console.log(responseHtml);
-                } else {
-                    var contentElement = contentElements[0];
-                    jsIncludeJqueryElement.html(contentElement);
-                    
-                    /*
-                    Fix headers in the included html so as to not mess up the table of contents 
-                    of the including page.
-                    Adjusting the heading levels to retain substructure seems more complicated -
-                    getting the heading "under" which jsIncludeJqueryElement falls seems non-trivial.
-                     */
-                    jsIncludeJqueryElement.find(":header").replaceWith(function() {
-                        return $("<h6 />").append($(this).contents());
-                    });
-
-                    // Fix image urls.
-                    jsIncludeJqueryElement.find("img").each(function() {
-                        $(this).attr("src", absoluteUrl(includedPageUrl, $(this).attr("src")));
-                    });
-
-                    // Fix links.
-                    jsIncludeJqueryElement.find("a").each(function() {
-                        $(this).attr("href", absoluteUrl(includedPageUrl, $(this).attr("href")));
-                    });
-                }
-            }
-        });
+        fillJsInclude(jsIncludeJqueryElement);
     });
 });
