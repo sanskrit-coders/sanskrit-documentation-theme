@@ -18,15 +18,13 @@ Based on tip in http://hamishwillee.github.io/2014/11/13/jekyll-includes-are-fun
     {% endif %} {% comment %}if currentLevel < 10 {% endcomment %}
 {% else %}
     {% assign item_url_stripped = (include.item.url | remove: "index.html" | replace: ".md", ".html"%}
-
     {% assign list_item_css_class = "inactive" %}
     {% if page.url == item_url_stripped %}
         {% assign list_item_css_class = "active" %}
     {% else%}
         {% assign list_item_css_class = "inactive" %}
     {% endif %}
-    {% assign is_external_link = ((include.item.url contains "http://") or  (include.item.url contains "https://") or (include.item.url contains "ftp://")) %}
-    {% if is_external_link%}
+    {% if (include.item.url contains "http://") or  (include.item.url contains "https://") or (include.item.url contains "ftp://")%}
     <li><a href="{{include.item.url}}" target="_blank">{{include.item.title}}</a></li>
     {% elsif include.item.url contains "dir://" %}
         {% for site_page in site.pages %}
