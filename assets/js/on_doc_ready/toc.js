@@ -26,10 +26,7 @@
 
     var get_level = function(ele) { return parseInt(ele.nodeName.replace("H", ""), 10); }
     var highest_level = headers.map(function(_, ele) { return get_level(ele); }).get().sort()[0];
-
-    // There is a javascript click listener (defined later in this file) for the below to scroll up.
-    var return_to_top = '<div class="icon-arrow-up back-to-top" style="text-align:right;">Up↑</div>';
-
+    
     var level = get_level(headers[0]),
       this_level,
       html = settings.title + " <"+settings.listType+" id=\"toc_ul\" class=\"nav\">";
@@ -38,7 +35,7 @@
         window.location.hash = this.id;
       }
     })
-    .addClass('clickable-header').after(return_to_top)
+    .addClass('clickable-header')
     .each(function(_, header) {
       this_level = get_level(header);
       if (!settings.noBackToTopLinks && this_level === highest_level) {
@@ -62,6 +59,15 @@
     });
     html += "</"+settings.listType+">";
 
+    // There is a javascript click listener (defined later in this file) for the below to scroll up.
+    var return_to_top = '<div class="icon-arrow-up back-to-top" style="text-align:right;">Up↑</div>';
+  headers.each(function () {
+      var header = $(this);
+      if (!header.next().hasClass("back-to-top")){
+          header.after(return_to_top);
+      }
+    })
+
     // Listener for "Back to top" links under headings.
     if (!settings.noBackToTopLinks) {
       $(document).on('click', '.back-to-top', function() {
@@ -70,7 +76,7 @@
       });
     }
 
-      output.html(html);
+    output.html(html);
   };
 })(jQuery);
 
