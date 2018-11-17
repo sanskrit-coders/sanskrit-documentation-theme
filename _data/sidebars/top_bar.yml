@@ -4,5 +4,11 @@ title: Parts
 contents:
   - title: Home - Intro
     url: /index.html
+  - title: Test pages
+    contents:
+      - title: index.md
+        url: /test/
+      - title: test.html
+        url: /test/test.html
   - title: Blog
     url: /assets/blog/index.html

@@ -1,0 +1,91 @@
+# This is your sidebar TOC. The sidebar code loops through sections here and provides the appropriate formatting.
+
+title: भागाः
+contents:
+  - title: मन्त्राः
+    contents:
+        - title: अग्निः
+          contents:
+            - title: दिवस्परि
+              url: /saMskAra/mantra/agni/divaspari.html
+            - title: सामानि
+              contents:
+                - url: dir://saMskAra/mantra/agni/paravastu-saama/
+        - title: इन्द्रः
+          contents:
+            - title: सामानि
+              contents:
+                - url: dir://saMskAra/mantra/indra/paravastu-saama/
+        - title: सोमः
+          contents:
+            - title: सामानि
+              contents:
+                - url: dir://saMskAra/mantra/soma/paravastu-saama/
+        - title: परिशिष्टम्
+          contents:
+            - title: सामानि
+              contents:
+                - url: dir://saMskAra/mantra/misc-devas/paravastu-saama/
+            - title: नक्षत्रसूक्तम्
+              url: /saMskAra/mantra/misc-devas/naxatra-suuktam.html
+            - title: द्रुहो मुञ्चामि
+              url: /saMskAra/mantra/misc-devas/druho-munchAmi.html
+        - title: google
+          url: http://www.google.com
+        - title: सङ्ग्रहाः
+          contents:
+            - title: सामानि
+              contents:
+                - url: dir://saMskAra/mantra/sangrahAH/paravastu-saama/
+  - title: कल्पः
+    contents:
+      - title: वैश्वदेवम्, पञ्चमहायज्ञाः (देवयज्ञः, पितृयज्ञः, मनुष्ययज्ञः, भूतयज्ञः, ब्रह्मयज्ञः)
+        url: /saMskAra/kalpa/pancha-mahaa-yajjna.html
+      - title: अध्ययन-व्रतानि
+        url: /saMskAra/kalpa/adhyayana-vrataani.html
+      - title: पाकयज्ञेष्वग्निहोत्राधारितो विधिः
+        url: /saMskAra/kalpa/paaka-yajjna-agnihotra-riitiH.html
+      - title: उदकशान्ति-टीकाः
+        url: /saMskAra/kalpa/udakashaanti.html
+      - title: जातकर्म नामकरणम् च
+        url: /saMskAra/kalpa/jaatakarma-naamakaraNa.html
+  - title: वंशाः
+    contents:
+      - title: Pics
+        url: /saMskAra/bloodlines/pics.html
+      - title: भार्गवाः
+        url: /saMskAra/bloodlines/bhaargava.html
+      - title: आङ्गीरसाः
+        url: /saMskAra/bloodlines/aangiirasa.html
+      - title: कौशिकाः
+        url: /saMskAra/bloodlines/kaushika.html
+      - title: Misc info
+        url: /saMskAra/bloodlines/
+  - title: काव्यम्
+    contents:
+      - title: Videos
+        url: /saMskAra/kaavya/videos.html
+  - title: ज्यौतिषम्
+    url: /saMskAra/jyotisha.html
+  - title: संस्कृतम्
+    contents:
+      - title: संस्कृताभ्यासाय योगदानम्
+        url: /saMskAra/sanskrit/index.html
+      - title: Why?
+        url: /saMskAra/sanskrit/why.html
+      - title: Misconceptions
+        url: /saMskAra/sanskrit/misconceptions.html
+      - title: Miscellaneous questions
+        url: /saMskAra/sanskrit/misc-faq.html
+      - title: शिक्षा
+        contents:
+          - title: परिचयः
+            url: /saMskAra/sanskrit/shixaa/
+          - title: Reciting and Recording
+            url: "https://sanskrit.github.io/projects/audio/tips.html"
+  - title: Home
+    url: /index.html
+  - title: Vishvas's home page
+    url: /../index.html
+  - title: Blog
+    url: /assets/blog/index.html
