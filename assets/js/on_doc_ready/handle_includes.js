@@ -52,13 +52,18 @@ function fixIncludedHtml(url, html, newLevelForH1) {
     Adjusting the heading levels to retain substructure seems more complicated -
     getting the heading "under" which jsIncludeJqueryElement falls seems non-trivial.
      */
-    jqueryElement.find(":header").replaceWith(function() {
-        var headerElement = $(this);
-        // console.debug(headerElement);
-        var hLevel = parseInt(headerElement.prop("tagName").substring(1));
-        var hLevelNew = Math.min(6, newLevelForH1 - 1 + hLevel)
-        return $("<h" + hLevelNew +" id='" + headerElement[0].id + "'/>").append(headerElement.contents());
-    });
+    var headers = jqueryElement.find(":header");
+    if (headers.length > 0) {
+        var id_prefix = headers[0].id;
+        headers.replaceWith(function() {
+            var headerElement = $(this);
+            // console.debug(headerElement);
+            var hLevel = parseInt(headerElement.prop("tagName").substring(1));
+            var hLevelNew = Math.min(6, newLevelForH1 - 1 + hLevel);
+            var newId = id_prefix + "_" + headerElement[0].id;
+            return $("<h" + hLevelNew +" id='" + newId + "'/>").append(headerElement.contents());
+        });
+    }
 
     // Fix image urls.
     jqueryElement.find("img").each(function() {
@@ -112,7 +117,7 @@ function fillJsInclude(jsIncludeJqueryElement, includedPageNewLevelForH1) {
                 var elementToInclude = $("<div class='included-post-content'/>")
                 var titleHtml = "";
                 if (jsIncludeJqueryElement.attr("includeTitle")) {
-                    titleHtml = "<h1>" + title + "</h1>";
+                    titleHtml = "<h1 id='" + title + "'>" + title + "</h1>";
                 }
                 elementToInclude.html(titleHtml + contentElements[0].innerHTML);
                 var contentElement = fixIncludedHtml(includedPageUrl, elementToInclude, includedPageNewLevelForH1);
