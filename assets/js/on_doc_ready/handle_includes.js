@@ -54,7 +54,7 @@ function fixIncludedHtml(url, html, newLevelForH1) {
      */
     jqueryElement.find(":header").replaceWith(function() {
         var headerElement = $(this);
-        console.debug(headerElement);
+        // console.debug(headerElement);
         var hLevel = parseInt(headerElement.prop("tagName").substring(1));
         var hLevelNew = Math.min(6, newLevelForH1 - 1 + hLevel)
         return $("<h" + hLevelNew +" id='" + headerElement[0].id + "'/>").append(headerElement.contents());
@@ -117,6 +117,7 @@ function fillJsInclude(jsIncludeJqueryElement, includedPageNewLevelForH1) {
                 elementToInclude.html(titleHtml + contentElements[0].innerHTML);
                 var contentElement = fixIncludedHtml(includedPageUrl, elementToInclude, includedPageNewLevelForH1);
                 jsIncludeJqueryElement.html(contentElement);
+                $('#toc').toc({minimumHeaders: 0, listType: 'ul', headers: 'h2,h3,h4,h5,h6'});
             }
         }
     });
@@ -161,12 +162,11 @@ function updateToc() {
 // Process includes of the form:
 // <div class="js_include" url="index.md"/> 
 $( document ).ready(function() {
+    console.debug("Inserting includes");
     $('.js_include').each(function() {
         var jsIncludeJqueryElement = $(this);
-        // console.log(jsIncludeJqueryElement);
+        // The actual filling happens in a separate thread!
         fillJsInclude(jsIncludeJqueryElement);
-        // TODO: A major defect is that includes don't show up in the table of contents automatically.
-        // It is unclear why the #toc call, which happens after this, does not work.
     });
 });
 

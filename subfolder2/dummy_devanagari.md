@@ -16,4 +16,4 @@ emphasis_as_inline_comments: true
 
 
 
-<div class="js_include" url="../subfolder1/divaspari.md" newLevelForH1="2"> </div>  
+<div class="js_include" url="../subfolder1/divaspari.md" newLevelForH1="2" includeTitle="true"> </div>  

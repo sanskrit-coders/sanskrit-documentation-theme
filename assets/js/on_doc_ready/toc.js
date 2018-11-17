@@ -10,7 +10,7 @@
     },
     settings = $.extend(defaults, options);
 
-    console.debug($(settings.headers));
+    // console.debug($(settings.headers));
     var headers = $(settings.headers).filter(function() {
       // get all headers with an ID
       var previousSiblingName = $(this).prev().attr( "name" );
