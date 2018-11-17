@@ -50,17 +50,7 @@ layout: default
     {% endif %}
 
     
-    {% if page.format_inline_comments %}
-        {% assign inline_comment_type1_regex = '\[\[(.+?)\]\]' %}
-        {% assign inline_comment_type1_regex_replacement = '<div class="inline_comment">[\1]</div>' %}
-        {% assign inline_comment_type2_regex = '\(=(.+?)\)' %}
-        {% assign inline_comment_type2_regex_replacement = '<div class="inline_comment">(=\1)</div>' %}
-        {% assign dummy_example = '(=कश्चित्)' %}
-        <!--Handles stuff like: जरते (=स्तौति) स्वा॒धीः or त्रे॒धा {रूपाणि अग्नि-विद्युत्-सूर्यास्} त्र॒याणि॑-->
-        {{content| regex_replace: inline_comment_type1_regex,  inline_comment_type1_regex_replacement |  regex_replace: inline_comment_type2_regex,  inline_comment_type2_regex_replacement}}
-    {% else %}
-        {{content}}
-    {% endif %}
+    {{content}}
 
     <div class="tags">
         {% if page.tags != null %}
