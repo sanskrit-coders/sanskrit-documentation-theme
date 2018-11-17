@@ -1,6 +1,7 @@
 {% assign item = site.data.sidebars[page.sidebar] %}
 
-<ul id="displayed_sidebar" class="nav">
+
+<ul id="displayed_sidebar" class="nav"> 
     <li class="sidebarTitle">{{item.title}}</li>
     {% for subitem in item.contents %}
     {% include /functions/recursive_item_to_list.html item=subitem level=1 %}
