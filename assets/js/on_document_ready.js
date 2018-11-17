@@ -136,23 +136,23 @@ function absoluteUrl(base, relative) {
 }
 
 // WHen you include html from one page within another, you need to fix image urls, anchor urls etc..
-function fixIncludedHtml(url, html, newLevelForH2) {
+function fixIncludedHtml(url, html, newLevelForH1) {
     // We want to use jquery to parse html, but without loading images. Hence this.
     // Tip from: https://stackoverflow.com/questions/15113910/jquery-parse-html-without-loading-images
     var virtualDocument = document.implementation.createHTMLDocument('virtual');
     var jqueryElement = $(html, virtualDocument);
     // Deal with includes within includes. Do this before fixing images urls etc.. because there may be images within the newly included html.
     jqueryElement.find('.js_include').each(function() {
-        if (newLevelForH2 < 2) {
-            console.error("Ignoring invalid newLevelForH2: %d, using 6", newLevelForH2);
-            newLevelForH2 = 6;
+        if (newLevelForH1 < 1) {
+            console.error("Ignoring invalid newLevelForH1: %d, using 6", newLevelForH1);
+            newLevelForH1 = 6;
         }
         var jsIncludeElement = $(this);
-        var includedPageNewLevelForH2 = parseInt(jsIncludeJqueryElement.attr("newLevelForH2"));
+        var includedPageNewLevelForH2 = parseInt(jsIncludeJqueryElement.attr("newLevelForH1"));
         if (includedPageNewLevelForH2 == undefined) {
             includedPageNewLevelForH2 = 6;
         }
-        includedPageNewLevelForH2 = Math.min(6, ((includedPageNewLevelForH2 - 2) + newLevelForH2));
+        includedPageNewLevelForH2 = Math.min(6, ((includedPageNewLevelForH2 - 2) + newLevelForH1));
         fillJsInclude($(this), includedPageNewLevelForH2);
     });
     
@@ -165,8 +165,8 @@ function fixIncludedHtml(url, html, newLevelForH2) {
     jqueryElement.find(":header").replaceWith(function() {
         var headerElement = $(this);
         var hLevel = parseInt(headerElement.prop("tagName").substring(1));
-        var hLevelNew = Math.min(6, newLevelForH2 - 2 + hLevel)
-        return $("<h" + newLevelForH2 +"/>").append(headerElement.contents());
+        var hLevelNew = Math.min(6, newLevelForH1 - 1 + hLevel)
+        return $("<h" + hLevelNew +"/>").append(headerElement.contents());
     });
 
     // Fix image urls.
@@ -189,13 +189,13 @@ function fixIncludedHtml(url, html, newLevelForH2) {
     return jqueryElement;
 }
 
-function fillJsInclude(jsIncludeJqueryElement, includedPageNewLevelForH2) {
+function fillJsInclude(jsIncludeJqueryElement, includedPageNewLevelForH1) {
     var includedPageUrl = jsIncludeJqueryElement.attr("url").replace(".md", ".html");
-    if (includedPageNewLevelForH2 == undefined) {
-        includedPageNewLevelForH2 = parseInt(jsIncludeJqueryElement.attr("newLevelForH2"));
+    if (includedPageNewLevelForH1 == undefined) {
+        includedPageNewLevelForH1 = parseInt(jsIncludeJqueryElement.attr("newLevelForH1"));
     }
-    if (includedPageNewLevelForH2 == undefined) {
-        includedPageNewLevelForH2 = 6;
+    if (includedPageNewLevelForH1 == undefined) {
+        includedPageNewLevelForH1 = 6;
     }
     $.ajax(includedPageUrl,{
         success: function(responseHtml) {
@@ -203,6 +203,13 @@ function fillJsInclude(jsIncludeJqueryElement, includedPageNewLevelForH2) {
             // Tip from: https://stackoverflow.com/questions/15113910/jquery-parse-html-without-loading-images
             var virtualDocument = document.implementation.createHTMLDocument('virtual');
 
+            var titleElements = $(responseHtml, virtualDocument).find(".post-title-main");
+            var title = "";
+            if (titleElements.length > 0) {
+                console.debug(titleElements[0]);
+                title = titleElements[0].textContent;
+            }
+            
             var contentElements = $(responseHtml, virtualDocument).find(".post-content");
             // console.log(contentElements);
             if (contentElements.length == 0) {
@@ -211,8 +218,8 @@ function fillJsInclude(jsIncludeJqueryElement, includedPageNewLevelForH2) {
             } else {
                 // We don't want multiple post-content divs, hence we replace with an included-post-content div.
                 var elementToInclude = $("<div class='included-post-content'/>")
-                elementToInclude.html(contentElements[0].innerHTML);
-                var contentElement = fixIncludedHtml(includedPageUrl, elementToInclude, includedPageNewLevelForH2);
+                elementToInclude.html("<h1>" + title + "</h1>" + contentElements[0].innerHTML);
+                var contentElement = fixIncludedHtml(includedPageUrl, elementToInclude, includedPageNewLevelForH1);
                 jsIncludeJqueryElement.html(contentElement);
             }
         }
