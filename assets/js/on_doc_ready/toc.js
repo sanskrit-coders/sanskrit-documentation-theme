@@ -22,7 +22,7 @@
     if (!headers.length || headers.length < settings.minimumHeaders || !output.length) {
       return;
     }
-    console.debug(headers);
+    // console.debug(headers);
 
     var get_level = function(ele) { return parseInt(ele.nodeName.replace("H", ""), 10); }
     var highest_level = headers.map(function(_, ele) { return get_level(ele); }).get().sort()[0];

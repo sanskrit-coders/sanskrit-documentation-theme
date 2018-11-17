@@ -25,8 +25,8 @@ Based on tip in http://hamishwillee.github.io/2014/11/13/jekyll-includes-are-fun
     {% else%}
         {% assign list_item_css_class = "inactive" %}
     {% endif %}
-
-    {% if include.item.url contains "http://" %}
+    {% assign is_external_link = (include.item.url contains "http://" or  include.item.url contains "https://") %}
+    {% if is_external_link%}
     <li><a href="{{include.item.url}}" target="_blank">{{include.item.title}}</a></li>
     {% elsif include.item.url contains "dir://" %}
         {% for site_page in site.pages %}
