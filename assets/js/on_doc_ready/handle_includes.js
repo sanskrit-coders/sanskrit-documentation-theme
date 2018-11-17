@@ -54,9 +54,10 @@ function fixIncludedHtml(url, html, newLevelForH1) {
      */
     jqueryElement.find(":header").replaceWith(function() {
         var headerElement = $(this);
+        console.debug(headerElement);
         var hLevel = parseInt(headerElement.prop("tagName").substring(1));
         var hLevelNew = Math.min(6, newLevelForH1 - 1 + hLevel)
-        return $("<h" + hLevelNew +" id='" + headerElement.id + "'/>").append(headerElement.contents());
+        return $("<h" + hLevelNew +" id='" + headerElement[0].id + "'/>").append(headerElement.contents());
     });
 
     // Fix image urls.
@@ -97,7 +98,7 @@ function fillJsInclude(jsIncludeJqueryElement, includedPageNewLevelForH1) {
             var titleElements = $(responseHtml, virtualDocument).find(".post-title-main");
             var title = "";
             if (titleElements.length > 0) {
-                console.debug(titleElements[0]);
+                // console.debug(titleElements[0]);
                 title = titleElements[0].textContent;
             }
 

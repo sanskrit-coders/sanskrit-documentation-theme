@@ -74,7 +74,7 @@
   };
 })(jQuery);
 
-// Update table of contents after all includes are handled.
+// Update table of contents (To be called after all includes are handled, though that does not seem to make a difference).
 $( document ).ready(function() {
     $('#toc_ul').navgoco({
         caretHtml: '',
