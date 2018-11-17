@@ -10,6 +10,7 @@
     },
     settings = $.extend(defaults, options);
 
+    console.debug($(settings.headers));
     var headers = $(settings.headers).filter(function() {
       // get all headers with an ID
       var previousSiblingName = $(this).prev().attr( "name" );
@@ -21,6 +22,7 @@
     if (!headers.length || headers.length < settings.minimumHeaders || !output.length) {
       return;
     }
+    console.debug(headers);
 
     var get_level = function(ele) { return parseInt(ele.nodeName.replace("H", ""), 10); }
     var highest_level = headers.map(function(_, ele) { return get_level(ele); }).get().sort()[0];
@@ -71,3 +73,24 @@
       output.html(html);
   };
 })(jQuery);
+
+// Update table of contents after all includes are handled.
+$( document ).ready(function() {
+    $('#toc_ul').navgoco({
+        caretHtml: '',
+        accordion: true,
+        openClass: 'active', // open
+        save: false, // leave false or nav highlighting doesn't work right
+        caretHtml: '...', // Make it easier to expand the drawers by increasing click-capture area.
+        cookie: {
+            name: 'navgoco',
+            expires: false,
+            path: '/'
+        },
+        slide: {
+            duration: 400,
+            easing: 'swing'
+        }
+    });
+    $('#toc').toc({minimumHeaders: 0, listType: 'ul', headers: 'h2,h3,h4,h5,h6'});
+});

@@ -1,113 +1,3 @@
-$('#displayed_sidebar').height($(".nav").height());
-
-$(document).ready(function() {
-    // Initialize navgoco with default options
-    $("#displayed_sidebar").navgoco({
-        caretHtml: '',
-        accordion: true,
-        openClass: 'active', // open
-        save: false, // leave false or nav highlighting doesn't work right
-        cookie: {
-            name: 'navgoco',
-            expires: false,
-            path: '/'
-        },
-        slide: {
-            duration: 400,
-            easing: 'swing'
-        }
-    });
-    $("#toc_ul").navgoco({
-        caretHtml: '',
-        accordion: true,
-        openClass: 'active', // open
-        save: false, // leave false or nav highlighting doesn't work right
-        cookie: {
-            name: 'navgoco',
-            expires: false,
-            path: '/'
-        },
-        slide: {
-            duration: 400,
-            easing: 'swing'
-        }
-    });
-
-    $("#collapseAll").click(function(e) {
-        e.preventDefault();
-        $("#displayed_sidebar").navgoco('toggle', false);
-    });
-
-    $("#expandAll").click(function(e) {
-        e.preventDefault();
-        $("#displayed_sidebar").navgoco('toggle', true);
-    });
-
-});
-
-$( document ).ready(function() {
-
-    //this script says, if the height of the viewport is greater than 800px, then insert affix class, which makes the nav bar float in a fixed
-    // position as your scroll. if you have a lot of nav items, this height may not work for you.
-    var h = $(window).height();
-    //console.log (h);
-    if (h > 800) {
-        $( "#displayed_sidebar" ).attr("class", "nav affix");
-    }
-
-    /**
-     * AnchorJS
-     */
-    anchors.add('h2,h3,h4,h5');
-
-});
-
-// Code to make the "Nav" button, which toggles the sidebar.
-var toggleSidebar = function() {
-    $("#tg-sb-sidebar").toggle();
-    // $("#tg-sb-content").toggleClass('col-md-9');
-    // $("#tg-sb-content").toggleClass('col-md-12');
-    $("#tg-sb-icon").toggleClass('fa-toggle-on');
-    $("#tg-sb-icon").toggleClass('fa-toggle-off');
-};
-
-$(document).ready(function() {
-    $("#tg-sb-link").click(toggleSidebar);
-    $("#hide-sb-link").click(toggleSidebar);
-});
-
-// needed for nav tabs on pages. See Formatting > Nav tabs for more details.
-// script from http://stackoverflow.com/questions/10523433/how-do-i-keep-the-current-tab-active-with-twitter-bootstrap-after-a-page-reload
-// The below syntax is a shortcut for $( document ).ready(function() { …...});
-//
-$(function() {
-    var json, tabsState;
-    $('a[data-toggle="pill"], a[data-toggle="tab"]').on('shown.bs.tab', function(e) {
-        var href, json, parentId, tabsState;
-
-        tabsState = localStorage.getItem("tabs-state");
-        json = JSON.parse(tabsState || "{}");
-        parentId = $(e.target).parents("ul.nav.nav-pills, ul.nav.nav-tabs").attr("id");
-        href = $(e.target).attr('href');
-        json[parentId] = href;
-
-        return localStorage.setItem("tabs-state", JSON.stringify(json));
-    });
-
-    tabsState = localStorage.getItem("tabs-state");
-    json = JSON.parse(tabsState || "{}");
-
-    $.each(json, function(containerId, href) {
-        return $("#" + containerId + " a[href=" + href + "]").tab('show');
-    });
-
-    $("ul.nav.nav-pills, ul.nav.nav-tabs").each(function() {
-        var $this = $(this);
-        if (!json[$this.attr("id")]) {
-            return $this.find("a[data-toggle=tab]:first, a[data-toggle=pill]:first").tab("show");
-        }
-    });
-});
 
 /*
 Example: absoluteUrl("../subfolder1/divaspari.md", "images/forest-fire.jpg") == "../subfolder1/images/forest-fire.jpg"
@@ -155,7 +45,7 @@ function fixIncludedHtml(url, html, newLevelForH1) {
         includedPageNewLevelForH2 = Math.min(6, ((includedPageNewLevelForH2 - 2) + newLevelForH1));
         fillJsInclude($(this), includedPageNewLevelForH2);
     });
-    
+
     /*
     Fix headers in the included html so as to not mess up the table of contents 
     of the including page.
@@ -210,7 +100,7 @@ function fillJsInclude(jsIncludeJqueryElement, includedPageNewLevelForH1) {
                 console.debug(titleElements[0]);
                 title = titleElements[0].textContent;
             }
-            
+
             var contentElements = $(responseHtml, virtualDocument).find(".post-content");
             // console.log(contentElements);
             if (contentElements.length == 0) {
@@ -264,7 +154,7 @@ function updateToc() {
         toc += (new Array(level + 1)).join("</ul>");
     }
 
-    document.getElementById("toc").innerHTML += toc;    
+    document.getElementById("toc").innerHTML += toc;
 }
 
 // Process includes of the form:
@@ -275,27 +165,7 @@ $( document ).ready(function() {
         // console.log(jsIncludeJqueryElement);
         fillJsInclude(jsIncludeJqueryElement);
         // TODO: A major defect is that includes don't show up in the table of contents automatically.
-        // It is unclear why the #toc call below does not work.
+        // It is unclear why the #toc call, which happens after this, does not work.
     });
 });
 
-// Update table of contents after all includes are handled.
-$( document ).ready(function() {
-    $('#toc_ul').navgoco({
-        caretHtml: '',
-        accordion: true,
-        openClass: 'active', // open
-        save: false, // leave false or nav highlighting doesn't work right
-        caretHtml: '...', // Make it easier to expand the drawers by increasing click-capture area.
-        cookie: {
-            name: 'navgoco',
-            expires: false,
-            path: '/'
-        },
-        slide: {
-            duration: 400,
-            easing: 'swing'
-        }
-    });
-    $('#toc').toc({minimumHeaders: 0, listType: 'ul', headers: 'h2,h3,h4,h5,h6'});
-});
