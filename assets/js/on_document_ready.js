@@ -166,7 +166,7 @@ function fixIncludedHtml(url, html, newLevelForH1) {
         var headerElement = $(this);
         var hLevel = parseInt(headerElement.prop("tagName").substring(1));
         var hLevelNew = Math.min(6, newLevelForH1 - 1 + hLevel)
-        return $("<h" + hLevelNew +"/>").append(headerElement.contents());
+        return $("<h" + hLevelNew +" id='" + headerElement.id + "'/>").append(headerElement.contents());
     });
 
     // Fix image urls.
@@ -185,6 +185,7 @@ function fixIncludedHtml(url, html, newLevelForH1) {
     // Remove some tags.
     jqueryElement.find("script").remove();
     jqueryElement.find("#disqus_thread").remove();
+    jqueryElement.find("#toc").remove()
 
     return jqueryElement;
 }
@@ -218,12 +219,52 @@ function fillJsInclude(jsIncludeJqueryElement, includedPageNewLevelForH1) {
             } else {
                 // We don't want multiple post-content divs, hence we replace with an included-post-content div.
                 var elementToInclude = $("<div class='included-post-content'/>")
-                elementToInclude.html("<h1>" + title + "</h1>" + contentElements[0].innerHTML);
+                var titleHtml = "";
+                if (jsIncludeJqueryElement.attr("includeTitle")) {
+                    titleHtml = "<h1>" + title + "</h1>";
+                }
+                elementToInclude.html(titleHtml + contentElements[0].innerHTML);
                 var contentElement = fixIncludedHtml(includedPageUrl, elementToInclude, includedPageNewLevelForH1);
                 jsIncludeJqueryElement.html(contentElement);
             }
         }
     });
+}
+
+function updateToc() {
+    var toc = "";
+    var level = 0;
+
+    document.getElementById("contents").innerHTML =
+        document.getElementById("contents").innerHTML.replace(
+            /<h([\d])>([^<]+)<\/h([\d])>/gi,
+            function (str, openLevel, titleText, closeLevel) {
+                if (openLevel != closeLevel) {
+                    return str;
+                }
+
+                if (openLevel > level) {
+                    toc += (new Array(openLevel - level + 1)).join("<ul>");
+                } else if (openLevel < level) {
+                    toc += (new Array(level - openLevel + 1)).join("</ul>");
+                }
+
+                level = parseInt(openLevel);
+
+                var anchor = titleText.replace(/ /g, "_");
+                toc += "<li><a href=\"#" + anchor + "\">" + titleText
+                    + "</a></li>";
+
+                return "<h" + openLevel + "><a name=\"" + anchor + "\">"
+                    + titleText + "</a></h" + closeLevel + ">";
+            }
+        );
+
+    if (level) {
+        toc += (new Array(level + 1)).join("</ul>");
+    }
+
+    document.getElementById("toc").innerHTML += toc;    
 }
 
 // Process includes of the form:
@@ -233,5 +274,28 @@ $( document ).ready(function() {
         var jsIncludeJqueryElement = $(this);
         // console.log(jsIncludeJqueryElement);
         fillJsInclude(jsIncludeJqueryElement);
+        // TODO: A major defect is that includes don't show up in the table of contents automatically.
+        // It is unclear why the #toc call below does not work.
     });
+});
+
+// Update table of contents after all includes are handled.
+$( document ).ready(function() {
+    $('#toc_ul').navgoco({
+        caretHtml: '',
+        accordion: true,
+        openClass: 'active', // open
+        save: false, // leave false or nav highlighting doesn't work right
+        caretHtml: '...', // Make it easier to expand the drawers by increasing click-capture area.
+        cookie: {
+            name: 'navgoco',
+            expires: false,
+            path: '/'
+        },
+        slide: {
+            duration: 400,
+            easing: 'swing'
+        }
+    });
+    $('#toc').toc({minimumHeaders: 0, listType: 'ul', headers: 'h2,h3,h4,h5,h6'});
 });
