@@ -6,6 +6,9 @@ contents:
     url: /index.html
   - title: देवनागर्युदाहरणम्
     url: /subfolder2/dummy_devanagari.html
+  - title: Dir listing example
+    contents:
+      - url: dir://subfolder1/paravastu-saama
   - title: Technical details
     contents:
       - title: README

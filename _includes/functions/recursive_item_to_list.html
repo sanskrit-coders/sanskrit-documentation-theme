@@ -17,13 +17,31 @@ Based on tip in http://hamishwillee.github.io/2014/11/13/jekyll-includes-are-fun
     </li>
     {% endif %} {% comment %}if currentLevel < 10 {% endcomment %}
 {% else %}
-    {% assign item_url_stripped = (include.item.url | remove: "index.html" %}
+    {% assign item_url_stripped = (include.item.url | remove: "index.html" | replace: ".md", ".html"%}
+
+    {% assign list_item_css_class = "inactive" %}
+    {% if page.url == item_url_stripped %}
+        {% assign list_item_css_class = "active" %}
+    {% else%}
+        {% assign list_item_css_class = "inactive" %}
+    {% endif %}
+
     {% if include.item.url contains "http://" %}
     <li><a href="{{include.item.url}}" target="_blank">{{include.item.title}}</a></li>
-    {% elsif page.url == item_url_stripped %}
-    <li class="active"><a href="{{include.item.url | prepend: site.baseurl}}">{{include.item.title}}</a></li>
-    {% else %}
-    <li><a href="{{include.item.url | prepend: site.baseurl}}">{{include.item.title}}</a></li>
+    {% elsif include.item.url contains "dir://" %}
+        {% for site_page in site.pages %}
+            {% assign dir_path = (include.item.url | remove: "dir://"%}
+            {% if site_page.url contains dir_path %}
+                {% if site_page.url == page.url %}
+                    {% assign list_item_css_class = "active" %}
+                {% else%}
+                    {% assign list_item_css_class = "inactive" %}
+                {% endif %}
+                <li class="{{list_item_css_class}}"><a href="{{site_page.url | prepend: site.baseurl}}">{{site_page.title}}</a></li>
+            {% endif %}
+        {% endfor %} <!-- page -->
+    {% else%}
+    <li class="{{list_item_css_class}}"><a href="{{include.item.url | prepend: site.baseurl}}">{{include.item.title}}</a></li>
     {% endif %}
 {% endif %}
 

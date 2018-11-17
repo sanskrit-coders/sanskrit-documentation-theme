@@ -5,7 +5,7 @@ emphasis_as_inline_comments: true
 ---    
     
 ---    
-![](http://vvasuki.github.io/notes/mantra/agni/images/agni-at-dawn.jpg){:.thumbnail}
+![](http://vvasuki.github.io/notes/saMskAra/mantra/agni/images/agni-at-dawn.jpg){:.thumbnail}
 
 
 ## दवानलः  
