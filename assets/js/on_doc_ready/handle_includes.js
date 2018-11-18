@@ -75,7 +75,22 @@ function fixIncludedHtml(url, html, newLevelForH1) {
 
     // Fix links.
     jqueryElement.find("a").each(function() {
-        $(this).attr("href", absoluteUrl(url, $(this).attr("href")));
+        var href = $(this).attr("href");
+        if (href.startsWith("#")) {
+            var headers = jqueryElement.find(":header");
+            var new_href = href;
+            if (headers.length > 0) {
+                var id_prefix = headers[0].id;
+                new_href = "#" + id_prefix + "_" + href.substr(1);
+                console.debug(jqueryElement.find(href.substr(1)));
+                jqueryElement.find(href).each(function () {
+                    $(this).attr("id", new_href.substr(1));
+                });
+            }
+            $(this).attr("href", new_href);
+        } else {
+            $(this).attr("href", absoluteUrl(url, href));
+        }
     });
 
     // Remove some tags.
