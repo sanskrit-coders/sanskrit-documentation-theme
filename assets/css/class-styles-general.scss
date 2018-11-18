@@ -2,14 +2,36 @@
 ---
 // The dashes above are required by jekyll.
 // This file generates a css.
+
 /************************************************************/
-/* Some boxes*/
+/* Handle inline comments*/
 
 .inline_comment {
   font-size: 70%;
   color: firebrick;
   display: inline;
+  vertical-align: sub;
 }
+
+*[emphasis_as_inline_comments] {
+  em {
+    // Copied from inline_comments class above.
+    font-size: 80%;
+    color: firebrick;
+    display: inline;
+    vertical-align: sub;
+  }
+  strong {
+    // Copied from inline_comments class above.
+    font-size: 70%;
+    color: firebrick;
+    display: inline;
+    vertical-align: super;
+  }
+}
+  
+/************************************************************/
+/* Some boxes*/
 
 .bs-callout {
   padding: 20px;
@@ -121,14 +143,6 @@ p.external a {
   font-size: 130%;
 }
 
-*[emphasis_as_inline_comments] {
-  em {
-    // Copied from inline_comments class above.
-    font-size: 70%;
-    color: firebrick;
-    display: inline;
-  }
-}
 /************************************************************/
 
 p.post-meta {

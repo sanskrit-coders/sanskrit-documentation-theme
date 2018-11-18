@@ -30,3 +30,8 @@ $(function() {
         }
     });
 });
+
+// // Handle inline comments.
+// $(document).ready(function () {
+//     console.debug($(".emphasis_as_inline_comments"));
+// });
