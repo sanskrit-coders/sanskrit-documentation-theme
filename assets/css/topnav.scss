@@ -1,7 +1,21 @@
 ---
 ---
-  // The dashes above are required by jekyll.
-  // This file generates a css.
+// The dashes above are required by jekyll.
+// This file generates a css.
+
+.projectTitle {
+  font-weight: bold;
+  color: #ffffff;
+  vertical-align: bottom;
+  // When you hover on the title in the navbar.
+  &:hover{
+    color: #f0f0f0;
+  }
+}
+
+.githubEditButton {
+  margin-bottom: 7px;
+}
 
 .navbar-inverse {
   background-color: #be8100;
@@ -27,8 +41,28 @@
   .navbar-collapse, .navbar-form {
     border-color: #248ec2 !important;
   }
+  .navbar-nav > {
+    li > a {
+      background-color: transparent;
+      margin-top: 10px;
+    }
+    .active > a {
+      border-radius: 5px;
+      &:hover, &:focus {
+        border-radius: 5px;
+      }
+    }
+    .open > a {
+      border-radius: 5px;
+      &:focus, &:hover {
+        border-radius: 5px;
+      }
+    }
+  }
+  .navbar-collapse, .navbar-form {
+    border-color: #248ec2 !important;
+  }
 }
-
 
 .navbar-inverse .navbar-nav > .active > a {
   background-color: #be8100;
@@ -37,6 +71,7 @@
   }
 }
 
+
 div.navbar-collapse .dropdown-menu > li > a:hover {
   background-color: #be8100;
 }
@@ -44,4 +79,9 @@ div.navbar-collapse .dropdown-menu > li > a:hover {
 .open .dropdown-toggle.btn-primary {
   background-color: #248ec2;
   border-color: #be8100;
+}
+
+
+li.dropdownActive a {
+  font-weight: bold;
 }

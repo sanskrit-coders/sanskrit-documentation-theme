@@ -22,7 +22,35 @@
     vertical-align: sub;
   }
 }
-  
+
+/************************************************************/
+.summary {
+  color: #808080;
+  border-left: 5px solid #ED1951;
+  font-size: 100%;
+}
+
+.btn-primary {
+  color: #ffffff;
+  background-color: #be8100;
+  border-color: #be8100;
+}
+
+.btn-primary {
+  &:hover, &:focus, &:active, &.active {
+    background-color: #248ec2;
+    border-color: #be8100;
+  }
+}
+
+.printTitle {
+  color: #015CAE !important;
+}
+
+.anchorjs-link:hover {
+  color: #216f9b;
+}
+
 /************************************************************/
 /* Some boxes*/
 
@@ -248,14 +276,6 @@ p.post-meta {
 /* without this, the links in these notes aren't visible.*/
 
 /************************************************************/
-
-.projectTitle {
-  font-weight: bold;
-}
-
-.githubEditButton {
-  margin-bottom: 7px;
-}
 
 *:hover > .anchorjs-link {
   transition: color .25s linear;

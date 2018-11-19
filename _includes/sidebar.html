@@ -4,6 +4,7 @@
 <!-- toggle sidebar button -->
 <ul id="displayed_sidebar" class="nav">
     <li class="sidebarTitle">{{item.title}}</li>
+    <!--fa below stands for a font awesome icon.-->
     <li><a id="hide-sb-link" href="#"><i id="tg-sb-icon" class="fa fa-toggle-on"></i>Hide?</a></li>
     {% for subitem in item.contents %}
     {% include /functions/recursive_item_to_list.html item=subitem level=1 %}
