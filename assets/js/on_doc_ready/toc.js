@@ -89,7 +89,7 @@ $.fn.toc = function(options) {
               itemToActivate.addClass("active");
               itemToActivate.parents("li").addClass("active"); // This call is ineffective for some reason.
               // TODO: Haven't figured out how to open the navgoco menu to the right spot. (spent ~4 hours). 
-              // So just opening all items.
+              // Suspect a bug upstream.
               $("#toc_ul").navgoco('toggle', true);
 
               // Now scroll up.
