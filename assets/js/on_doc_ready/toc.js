@@ -101,5 +101,18 @@ function updateToc() {
     $('#toc').toc({minimumHeaders: 0, listType: 'ul', headers: 'h2,h3,h4,h5,h6'});
 }
 
-// Update table of contents (To be called after all includes are handled, though that does not seem to make a difference).
+// Update table of contents (To be called whenever page contents are updated).
 $( document ).ready(updateToc);
+
+
+
+// Code to make the "Nav" button, which toggles the sidebar.
+var toggleToc = function() {
+    $("#toc").toggle();
+    $("#toggle-toc-icon").toggleClass('fa-toggle-on');
+    $("#toggle-toc-icon").toggleClass('fa-toggle-off');
+};
+
+$(document).ready(function() {
+    $("#toggle-toc-icon").click(toggleToc);
+});

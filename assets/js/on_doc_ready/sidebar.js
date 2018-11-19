@@ -32,17 +32,6 @@ $(document).ready(function() {
             easing: 'swing'
         }
     });
-
-    $("#collapseAll").click(function(e) {
-        e.preventDefault();
-        $("#displayed_sidebar").navgoco('toggle', false);
-    });
-
-    $("#expandAll").click(function(e) {
-        e.preventDefault();
-        $("#displayed_sidebar").navgoco('toggle', true);
-    });
-
 });
 
 $( document ).ready(function() {
@@ -65,10 +54,10 @@ $( document ).ready(function() {
 // Code to make the "Nav" button, which toggles the sidebar.
 var toggleSidebar = function() {
     $("#tg-sb-sidebar").toggle();
-    // $("#tg-sb-content").toggleClass('col-md-9');
-    // $("#tg-sb-content").toggleClass('col-md-12');
     $("#tg-sb-icon").toggleClass('fa-toggle-on');
     $("#tg-sb-icon").toggleClass('fa-toggle-off');
+    $("#tg-sb-icon-content-pane").toggleClass('fa-toggle-on');
+    $("#tg-sb-icon-content-pane").toggleClass('fa-toggle-off');
 };
 
 $(document).ready(function() {

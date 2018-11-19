@@ -2,7 +2,7 @@
 layout: default
 ---
 <!-- toggle sidebar button -->
-<a id="tg-sb-link" href="#"><i id="tg-sb-icon" class="fa fa-toggle-on"></i>Sidebar</a>
+<a id="tg-sb-link" href="#"><i id="tg-sb-icon-content-pane" class="fa fa-toggle-on"></i>Sidebar</a>
 
 <div class="post-header">
    <h1 class="post-title-main">{{ page.title }}</h1>
@@ -39,6 +39,7 @@ layout: default
    {% endif %}
 
     {% unless page.toc == false %}
+    <div id="toc_header"><a id="toggle-toc-link" href="#">What's in this page? <i id="toggle-toc-icon" class="fa fa-toggle-on"></i></a></div>
     <div id="toc"></div>
     {% endunless %}
 
