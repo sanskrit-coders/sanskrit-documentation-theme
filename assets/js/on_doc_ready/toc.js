@@ -47,18 +47,23 @@ $.fn.toc = function(options) {
       }
       var toc_item_id = get_toc_item_id(header.id);
       if (this_level === level) // same level as before; same indenting
-        html += "<li><a id='" + toc_item_id + "' href='#" + header.id + "'>" + header.innerText + "</a>";
+        html += "<li id='" + toc_item_id + "'><a href='#" + header.id + "'>" + header.innerText + "</a>";
       else if (this_level <= level){ // higher level than before; end parent ol
         for(i = this_level; i < level; i++) {
           html += "</li></"+settings.listType+">"
         }
-        html += "<li><a id='" + toc_item_id + "' href='#" + header.id + "'>" + header.innerText + "</a>";
+        html += "<li  id='" + toc_item_id + "'><a href='#" + header.id + "'>" + header.innerText + "</a>";
       }
       else if (this_level > level) { // lower level than before; expand the previous to contain a ol
         for(i = this_level; i > level; i--) {
-          html += "<"+settings.listType+"><li>"
+          html += "<"+settings.listType+">";
+          if(i == level + 1) {
+              html +=  "<li id='" + toc_item_id + "'>";
+          } else {
+              html += "<li>";
+          }
         }
-        html += "<a id='" + toc_item_id + "' href='#" + header.id + "'>" + header.innerText + "</a>";
+        html += "<a href='#" + header.id + "'>" + header.innerText + "</a>";
       }
       level = this_level; // update for the next one
     });
@@ -66,12 +71,27 @@ $.fn.toc = function(options) {
     
     headers.each(function () {
       var header = $(this);
-      console.log(header);
       if (!header.next().hasClass("back-to-top")){
           // There is a javascript click listener (defined later in this file) for the below to scroll up.
           var return_to_top = $('<div id="toc_up_' + header.attr('id') + '" class="icon-arrow-up back-to-top" style="text-align:right;">Up↑</div>');
           var toc_item_id = get_toc_item_id(header.attr('id'));
           return_to_top.click(function () {
+              // First, open the navbar to the right spot.
+              var intendedLiIndex = 1;
+              $("#toc_ul").find("li").each(function (liIndex, liElement) {
+                  // console.debug(liIndex, liElement);
+                  if (liElement.id == toc_item_id) {
+                      liElement.classList.add("active");
+                      intendedLiIndex = liIndex;
+                  } else {
+                      liElement.classList.remove("active");
+                  }
+              });
+              // TODO: Haven't figured out how to open the navgoco menu to the right spot. (spent ~2 hours). 
+              // So just opening all items.
+              $("#toc_ul").navgoco('toggle', true);
+
+              // Now scroll up.
               $([document.documentElement, document.body]).animate({
                   scrollTop: $("#" + toc_item_id).offset().top
               }, 100);
@@ -81,8 +101,11 @@ $.fn.toc = function(options) {
     })
     
     output.html(html);
-
+    resetNavgocoMenu();
     // Finally, set up navgoco options.
+};
+
+function resetNavgocoMenu() {
     $('#toc_ul').navgoco({
         caretHtml: '',
         accordion: true,
@@ -99,7 +122,7 @@ $.fn.toc = function(options) {
             easing: 'swing'
         }
     });
-};
+}
 
 function updateToc() {
     $('#toc').toc({minimumHeaders: 0, listType: 'ul', headers: 'h2,h3,h4,h5,h6'});

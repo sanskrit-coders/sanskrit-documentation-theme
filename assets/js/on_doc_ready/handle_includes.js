@@ -31,6 +31,15 @@ function fixIncludedHtml(url, html, newLevelForH1) {
     // Tip from: https://stackoverflow.com/questions/15113910/jquery-parse-html-without-loading-images
     var virtualDocument = document.implementation.createHTMLDocument('virtual');
     var jqueryElement = $(html, virtualDocument);
+    
+    // Remove some tags.
+    jqueryElement.find("script").remove();
+    jqueryElement.find("#disqus_thread").remove();
+    jqueryElement.find("#toc").remove();
+    jqueryElement.find("#toc_header").remove();
+    jqueryElement.find(".back-to-top").remove();
+    // console.debug(jqueryElement.html());
+
     // Deal with includes within includes. Do this before fixing images urls etc.. because there may be images within the newly included html.
     jqueryElement.find('.js_include').each(function() {
         if (newLevelForH1 < 1) {
@@ -75,14 +84,15 @@ function fixIncludedHtml(url, html, newLevelForH1) {
 
     // Fix links.
     jqueryElement.find("a").each(function() {
+        // console.debug($(this).html());
         var href = $(this).attr("href");
         if (href.startsWith("#")) {
             var headers = jqueryElement.find(":header");
             var new_href = href;
             if (headers.length > 0) {
                 var id_prefix = headers[0].id;
-                new_href = "#" + id_prefix + "_" + href.substr(1);
-                console.debug(jqueryElement.find(href.substr(1)));
+                new_href = id_prefix + "_" + href.substr(1);
+                // console.debug(new_href, id_prefix, href);
                 jqueryElement.find(href).each(function () {
                     $(this).attr("id", new_href.substr(1));
                 });
@@ -92,11 +102,6 @@ function fixIncludedHtml(url, html, newLevelForH1) {
             $(this).attr("href", absoluteUrl(url, href));
         }
     });
-
-    // Remove some tags.
-    jqueryElement.find("script").remove();
-    jqueryElement.find("#disqus_thread").remove();
-    jqueryElement.find("#toc").remove()
 
     return jqueryElement;
 }
