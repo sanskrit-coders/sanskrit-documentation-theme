@@ -39,7 +39,11 @@ layout: default
    {% endif %}
 
     {% unless page.toc == false %}
-    <div id="toc_header"><a id="toggle-toc-link" href="#">What's in this page? <i id="toggle-toc-icon" class="fa fa-toggle-on"></i></a></div>
+    <div id="toc_header">
+        What's in this page?
+        <i id="toggle-toc-icon" class="fa fa-toggle-on"></i>
+        <span style="font-size: smaller">Expand? <i id="toggle-toc-expansion-icon" class="fa fa-toggle-off"></i></a></span>
+    </div>
     <div id="toc"></div>
     {% endunless %}
 

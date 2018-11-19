@@ -5,6 +5,7 @@ function get_toc_item_id(header_id) {
 // https://github.com/ghiculescu/jekyll-table-of-contents
 // This is how a jquery plugin is defined - https://stackoverflow.com/questions/2937227/what-does-function-jquery-mean .
 $.fn.toc = function(options) {
+    console.debug("Setting up TOC for " + document.location);
     var defaults = {
       noBackToTopLinks: false,
       title: '',
@@ -76,7 +77,7 @@ $.fn.toc = function(options) {
           var return_to_top = $('<div id="toc_up_' + header.attr('id') + '" class="icon-arrow-up back-to-top" style="text-align:right;">Up↑</div>');
           var toc_item_id = get_toc_item_id(header.attr('id'));
           return_to_top.click(function () {
-              // First, open the navbar to the right spot.
+              // First, set up the right selections in the table-of-contents navgoco.
               var itemToActivate = undefined;
               $("#toc_ul").find("li").each(function (liIndex, liElement) {
                   // console.debug(liIndex, liElement);
@@ -88,6 +89,7 @@ $.fn.toc = function(options) {
               });
               itemToActivate.addClass("active");
               itemToActivate.parents("li").addClass("active"); // This call is ineffective for some reason.
+
               // TODO: Haven't figured out how to open the navgoco menu to the right spot. (spent ~4 hours). 
               // Suspect a bug upstream.
               // $("#toc_ul").navgoco('toggle', true);
@@ -108,7 +110,6 @@ $.fn.toc = function(options) {
 
 function resetNavgocoMenu() {
     $('#toc_ul').navgoco({
-        caretHtml: '',
         accordion: true,
         openClass: 'active', // open
         save: false,
@@ -123,6 +124,8 @@ function resetNavgocoMenu() {
             easing: 'swing'
         }
     });
+    // console.debug("Set up navgoco.");
+    $("#toc_ul").navgoco('toggle', false);
 }
 
 function updateToc() {
@@ -142,6 +145,17 @@ var toggleToc = function() {
     $("#toggle-toc-icon").toggleClass('fa-toggle-off');
 };
 
+function toggleTocExpansion() {
+    $("#toggle-toc-expansion-icon").toggleClass('fa-toggle-on');
+    $("#toggle-toc-expansion-icon").toggleClass('fa-toggle-off');
+    if($("#toggle-toc-expansion-icon").hasClass('fa-toggle-on')) {
+        $("#toc_ul").navgoco('toggle', true);
+    } else {
+        $("#toc_ul").navgoco('toggle', false);
+    }
+}
+
 $(document).ready(function() {
     $("#toggle-toc-icon").click(toggleToc);
+    $("#toggle-toc-expansion-icon").click(toggleTocExpansion);
 });

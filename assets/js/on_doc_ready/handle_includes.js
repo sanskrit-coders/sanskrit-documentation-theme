@@ -31,9 +31,11 @@ function fixIncludedHtml(url, html, newLevelForH1) {
     // Tip from: https://stackoverflow.com/questions/15113910/jquery-parse-html-without-loading-images
     var virtualDocument = document.implementation.createHTMLDocument('virtual');
     var jqueryElement = $(html, virtualDocument);
-    
+
+    // console.debug(jqueryElement.html());
     // Remove some tags.
     jqueryElement.find("script").remove();
+    jqueryElement.find("footer").remove();
     jqueryElement.find("#disqus_thread").remove();
     jqueryElement.find("#toc").remove();
     jqueryElement.find("#toc_header").remove();
@@ -160,8 +162,8 @@ function fillJsInclude(jsIncludeJqueryElement, includedPageNewLevelForH1) {
 // Process includes of the form:
 // <div class="js_include" url="index.md"/> 
 $( document ).ready(function() {
-    console.debug("Inserting includes");
     $('.js_include').each(function() {
+        console.debug("Inserting include for " + $(this).html());
         var jsIncludeJqueryElement = $(this);
         // The actual filling happens in a separate thread!
         fillJsInclude(jsIncludeJqueryElement);
