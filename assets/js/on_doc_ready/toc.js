@@ -109,9 +109,9 @@ $.fn.toc = function(options) {
 function resetNavgocoMenu() {
     $('#toc_ul').navgoco({
         caretHtml: '',
-        accordion: true,
+        accordion: false,
         openClass: 'active', // open
-        save: false, // leave false or nav highlighting doesn't work right
+        save: true, // leave false or nav highlighting doesn't work right
         caretHtml: '...', // Make it easier to expand the drawers by increasing click-capture area.
         cookie: {
             name: 'navgoco',
@@ -134,7 +134,8 @@ $( document ).ready(updateToc);
 
 
 
-// Code to make the "Nav" button, which toggles the sidebar.
+// Code to make the "Nav" button, which toggles the table of contents.
+// Not to be confused with toggling sub-items in that menu.
 var toggleToc = function() {
     $("#toc").toggle();
     $("#toggle-toc-icon").toggleClass('fa-toggle-on');

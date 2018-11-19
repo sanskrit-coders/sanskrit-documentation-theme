@@ -1,0 +1,47 @@
+---
+---
+  // The dashes above are required by jekyll.
+  // This file generates a css.
+
+.navbar-inverse {
+  background-color: #be8100;
+  border-color: #015CAE;
+  .navbar-nav > li > a, .navbar-brand {
+    color: white;
+  }
+  .navbar-nav > li > a:hover {
+    color: #f0f0f0;
+  }
+  .navbar-nav > .open > a {
+    color: #015CAE;
+    &:hover, &:focus {
+      color: #015CAE;
+    }
+    background-color: #015CAE;
+    color: #ffffff;
+    &:hover, &:focus {
+      background-color: #015CAE;
+      color: #ffffff;
+    }
+  }
+  .navbar-collapse, .navbar-form {
+    border-color: #248ec2 !important;
+  }
+}
+
+
+.navbar-inverse .navbar-nav > .active > a {
+  background-color: #be8100;
+  &:hover, &:focus {
+    background-color: #be8100;
+  }
+}
+
+div.navbar-collapse .dropdown-menu > li > a:hover {
+  background-color: #be8100;
+}
+
+.open .dropdown-toggle.btn-primary {
+  background-color: #248ec2;
+  border-color: #be8100;
+}
