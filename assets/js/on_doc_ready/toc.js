@@ -1,3 +1,7 @@
+function get_toc_item_id(header_id) {
+    return "toc_item_" + header_id;
+}
+
 // https://github.com/ghiculescu/jekyll-table-of-contents
 // This is how a jquery plugin is defined - https://stackoverflow.com/questions/2937227/what-does-function-jquery-mean .
 $.fn.toc = function(options) {
@@ -41,40 +45,40 @@ $.fn.toc = function(options) {
       if (!settings.noBackToTopLinks && this_level === highest_level) {
         $(header).addClass('top-level-header');
       }
+      var toc_item_id = get_toc_item_id(header.id);
       if (this_level === level) // same level as before; same indenting
-        html += "<li><a href='#" + header.id + "'>" + header.innerText + "</a>";
+        html += "<li><a id='" + toc_item_id + "' href='#" + header.id + "'>" + header.innerText + "</a>";
       else if (this_level <= level){ // higher level than before; end parent ol
         for(i = this_level; i < level; i++) {
           html += "</li></"+settings.listType+">"
         }
-        html += "<li><a href='#" + header.id + "'>" + header.innerText + "</a>";
+        html += "<li><a id='" + toc_item_id + "' href='#" + header.id + "'>" + header.innerText + "</a>";
       }
       else if (this_level > level) { // lower level than before; expand the previous to contain a ol
         for(i = this_level; i > level; i--) {
           html += "<"+settings.listType+"><li>"
         }
-        html += "<a href='#" + header.id + "'>" + header.innerText + "</a>";
+        html += "<a id='" + toc_item_id + "' href='#" + header.id + "'>" + header.innerText + "</a>";
       }
       level = this_level; // update for the next one
     });
     html += "</"+settings.listType+">";
     
-    // There is a javascript click listener (defined later in this file) for the below to scroll up.
-    var return_to_top = '<div class="icon-arrow-up back-to-top" style="text-align:right;">Up↑</div>';
     headers.each(function () {
       var header = $(this);
+      console.log(header);
       if (!header.next().hasClass("back-to-top")){
+          // There is a javascript click listener (defined later in this file) for the below to scroll up.
+          var return_to_top = $('<div id="toc_up_' + header.attr('id') + '" class="icon-arrow-up back-to-top" style="text-align:right;">Up↑</div>');
+          var toc_item_id = get_toc_item_id(header.attr('id'));
+          return_to_top.click(function () {
+              $([document.documentElement, document.body]).animate({
+                  scrollTop: $("#" + toc_item_id).offset().top
+              }, 100);
+          });
           header.after(return_to_top);
       }
     })
-    
-    // Listener for "Back to top" links under headings.
-    if (!settings.noBackToTopLinks) {
-      $(document).on('click', '.back-to-top', function() {
-        $(window).scrollTop(0);
-        window.location.hash = '';
-      });
-    }
     
     output.html(html);
 
