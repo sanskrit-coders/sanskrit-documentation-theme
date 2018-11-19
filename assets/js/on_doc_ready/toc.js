@@ -118,7 +118,7 @@ function resetNavgocoMenu() {
             path: '/'
         },
         slide: {
-            duration: 400,
+            duration: 0, // 400ms was causing screen shakes with scrolling to the top by pressing the Up bottons.
             easing: 'swing'
         }
     });
