@@ -1,29 +1,14 @@
 $('#displayed_sidebar').height($(".nav").height());
 
 $(document).ready(function() {
-    // Initialize navgoco with default options
+    // Initialize navgoco sidebar with default options
     $("#displayed_sidebar").navgoco({
         caretHtml: '',
         accordion: true,
         openClass: 'active', // open
-        save: false, // leave false or nav highlighting doesn't work right
+        save: true,
         cookie: {
-            name: 'navgoco',
-            expires: false,
-            path: '/'
-        },
-        slide: {
-            duration: 400,
-            easing: 'swing'
-        }
-    });
-    $("#toc_ul").navgoco({
-        caretHtml: '',
-        accordion: true,
-        openClass: 'active', // open
-        save: false, // leave false or nav highlighting doesn't work right
-        cookie: {
-            name: 'navgoco',
+            name: 'navgoco_sidebar',
             expires: false,
             path: '/'
         },

@@ -90,7 +90,7 @@ $.fn.toc = function(options) {
               itemToActivate.parents("li").addClass("active"); // This call is ineffective for some reason.
               // TODO: Haven't figured out how to open the navgoco menu to the right spot. (spent ~4 hours). 
               // Suspect a bug upstream.
-              $("#toc_ul").navgoco('toggle', true);
+              // $("#toc_ul").navgoco('toggle', true);
 
               // Now scroll up.
               $([document.documentElement, document.body]).animate({
@@ -109,12 +109,12 @@ $.fn.toc = function(options) {
 function resetNavgocoMenu() {
     $('#toc_ul').navgoco({
         caretHtml: '',
-        accordion: false,
+        accordion: true,
         openClass: 'active', // open
-        save: true, // leave false or nav highlighting doesn't work right
+        save: false,
         caretHtml: '...', // Make it easier to expand the drawers by increasing click-capture area.
         cookie: {
-            name: 'navgoco',
+            name: 'navgoco_toc',
             expires: false,
             path: '/'
         },
