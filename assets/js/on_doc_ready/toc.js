@@ -1,6 +1,6 @@
 // https://github.com/ghiculescu/jekyll-table-of-contents
-(function($){
-  $.fn.toc = function(options) {
+// This is how a jquery plugin is defined - https://stackoverflow.com/questions/2937227/what-does-function-jquery-mean .
+$.fn.toc = function(options) {
     var defaults = {
       noBackToTopLinks: false,
       title: '',
@@ -9,7 +9,7 @@
       listType: 'ol', // values: [ol|ul]
     },
     settings = $.extend(defaults, options);
-
+    
     // console.debug($(settings.headers));
     var headers = $(settings.headers).filter(function() {
       // get all headers with an ID
@@ -23,7 +23,7 @@
       return;
     }
     // console.debug(headers);
-
+    
     var get_level = function(ele) { return parseInt(ele.nodeName.replace("H", ""), 10); }
     var highest_level = headers.map(function(_, ele) { return get_level(ele); }).get().sort()[0];
     
@@ -58,16 +58,16 @@
       level = this_level; // update for the next one
     });
     html += "</"+settings.listType+">";
-
+    
     // There is a javascript click listener (defined later in this file) for the below to scroll up.
     var return_to_top = '<div class="icon-arrow-up back-to-top" style="text-align:right;">Up↑</div>';
-  headers.each(function () {
+    headers.each(function () {
       var header = $(this);
       if (!header.next().hasClass("back-to-top")){
           header.after(return_to_top);
       }
     })
-
+    
     // Listener for "Back to top" links under headings.
     if (!settings.noBackToTopLinks) {
       $(document).on('click', '.back-to-top', function() {
@@ -75,13 +75,10 @@
         window.location.hash = '';
       });
     }
-
+    
     output.html(html);
-  };
-})(jQuery);
 
-// Update table of contents (To be called after all includes are handled, though that does not seem to make a difference).
-$( document ).ready(function() {
+    // Finally, set up navgoco options.
     $('#toc_ul').navgoco({
         caretHtml: '',
         accordion: true,
@@ -98,5 +95,11 @@ $( document ).ready(function() {
             easing: 'swing'
         }
     });
+};
+
+function updateToc() {
     $('#toc').toc({minimumHeaders: 0, listType: 'ul', headers: 'h2,h3,h4,h5,h6'});
-});
+}
+
+// Update table of contents (To be called after all includes are handled, though that does not seem to make a difference).
+$( document ).ready(updateToc);
