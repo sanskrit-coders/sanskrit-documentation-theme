@@ -77,17 +77,18 @@ $.fn.toc = function(options) {
           var toc_item_id = get_toc_item_id(header.attr('id'));
           return_to_top.click(function () {
               // First, open the navbar to the right spot.
-              var intendedLiIndex = 1;
+              var itemToActivate = undefined;
               $("#toc_ul").find("li").each(function (liIndex, liElement) {
                   // console.debug(liIndex, liElement);
                   if (liElement.id == toc_item_id) {
-                      liElement.classList.add("active");
-                      intendedLiIndex = liIndex;
+                      itemToActivate = $(this);
                   } else {
-                      liElement.classList.remove("active");
+                      $(this).removeClass("active");
                   }
               });
-              // TODO: Haven't figured out how to open the navgoco menu to the right spot. (spent ~2 hours). 
+              itemToActivate.addClass("active");
+              itemToActivate.parents("li").addClass("active"); // This call is ineffective for some reason.
+              // TODO: Haven't figured out how to open the navgoco menu to the right spot. (spent ~4 hours). 
               // So just opening all items.
               $("#toc_ul").navgoco('toggle', true);
 
