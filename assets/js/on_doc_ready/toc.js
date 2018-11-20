@@ -94,7 +94,7 @@ $.fn.toc = function(options) {
               
               // Now scroll up.
               $([document.documentElement, document.body]).animate({
-                  scrollTop: $("id='" + toc_item_id + "'").offset().top
+                  scrollTop: $("[id='" + toc_item_id + "']").offset().top
               }, 100);
           });
           header.after(return_to_top);
