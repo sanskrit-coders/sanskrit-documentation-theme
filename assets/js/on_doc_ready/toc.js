@@ -77,7 +77,9 @@ $.fn.toc = function(options) {
           var return_to_top = $('<div id="toc_up_' + header.attr('id') + '" class="icon-arrow-up back-to-top" style="text-align:right;">Up↑</div>');
           var toc_item_id = get_toc_item_id(header.attr('id'));
           return_to_top.click(function () {
-              // First, set up the right selections in the table-of-contents navgoco.
+              // First, set up the right selections in the table-of-contents menu.
+              // So, the user can follow the trail of highlights menu items and expand the menu items till he reaches the appropriate level.
+              // On 20181119, I spent close to a working day messing with the menu getting it to expand to the right spot; but on realizing that the above is good enough, gave up.
               var itemToActivate = undefined;
               $("#toc_ul").find("li").each(function (liIndex, liElement) {
                   // console.debug(liIndex, liElement);
@@ -89,11 +91,7 @@ $.fn.toc = function(options) {
               });
               itemToActivate.addClass("active");
               itemToActivate.parents("li").addClass("active"); // This call is ineffective for some reason.
-
-              // TODO: Haven't figured out how to open the navgoco menu to the right spot. (spent ~4 hours). 
-              // Suspect a bug upstream.
-              // $("#toc_ul").navgoco('toggle', true);
-
+              
               // Now scroll up.
               $([document.documentElement, document.body]).animate({
                   scrollTop: $("#" + toc_item_id).offset().top
