@@ -30,15 +30,19 @@ To debug this file, use code such as the below, outside the liquid comment block
         <li><a href="{{include.item.url}}" target="_blank">{{include.item.title}}</a></li>
     {% elsif include.item.url contains "dir://" %}
         {% for site_page in site.pages %}
-            {% assign dir_path = (include.item.url | remove: "dir://")%}
-            {% if site_page.url contains dir_path%}
-                {% if site_page.url == page.url %}
-                    {% assign list_item_css_class = "active" %}
-                {% else%}
-                    {% assign list_item_css_class = "inactive" %}
-                {% endif %}
-                    <li class="{{list_item_css_class}}"><a href="{{site_page.url | prepend: site.baseurl}}">{{site_page.title}}</a></li>
-            {% endif %}
+            {% assign dir_path = "/" | append: (include.item.url | remove: "dir://") | append: "/"%}
+            {% assign site_page_without_dir_url = (site_page.url | remove: dir_path)%}
+<!--{{site_page_without_dir_url}}-->
+            {% if (site_page.url contains dir_path) %}
+                {% unless (site_page_without_dir_url contains "/") %}
+                    {% if site_page.url == page.url %}
+                        {% assign list_item_css_class = "active" %}
+                    {% else%}
+                        {% assign list_item_css_class = "inactive" %}
+                    {% endif %}
+                        <li class="{{list_item_css_class}}"><a href="{{site_page.url | prepend: site.baseurl}}">{{site_page.title}}</a></li>
+                {%endunless%}
+            {% endif %} 
         {% endfor %} <!-- page -->
     {% else%}
         <li class="{{list_item_css_class}}"><a href="{{include.item.url | prepend: site.baseurl}}">{{include.item.title}}</a></li>
