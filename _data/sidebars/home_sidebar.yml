@@ -11,7 +11,7 @@ contents:
       - url: dir://subfolder1/paravastu-saama
   - title: list subfolder1
     contents:
-    - url: dir://subfolder1
+    - url: dir://subfolder1/
   - title: Technical details
     contents:
       - title: README
