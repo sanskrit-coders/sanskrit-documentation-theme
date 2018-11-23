@@ -3,13 +3,13 @@
   // The dashes above are required by jekyll.
   // This file generates a css.
 
-.videoWrapper {
+.videoEmbed {
   position: relative;
   padding-bottom: 56.333%;
   height: 0;
   background: black;
 }
-.videoWrapper iframe {
+.videoEmbed iframe {
   position: absolute;
   top: 0;
   left: 0;
