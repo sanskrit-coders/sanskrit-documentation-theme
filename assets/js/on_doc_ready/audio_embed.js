@@ -23,9 +23,11 @@ function mp3Embed(audioEmbedTag) {
     }
 }
 
-$(document).ready(function() {
+function fillAudioEmbeds() {
     var audioEmbedTags = document.querySelectorAll('.audioEmbed');
     audioEmbedTags.forEach(function (audioEmbedTag) {
         mp3Embed(audioEmbedTag);
     });
-});
+}
+
+$(document).ready(fillAudioEmbeds);

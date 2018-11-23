@@ -42,9 +42,11 @@ function videoEmbed(videoEmbedTag) {
     }
 }
 
-$(document).ready(function() {
+function fillVideoEmbeds() {
     var videoEmbedTags = document.querySelectorAll('.videoEmbed');
     videoEmbedTags.forEach(function (videoEmbedTag) {
         videoEmbed(videoEmbedTag);
     });
-});
+}
+
+$(document).ready(fillVideoEmbeds);

@@ -144,6 +144,8 @@ function fillJsInclude(jsIncludeJqueryElement, includedPageNewLevelForH1) {
                 elementToInclude.html(titleHtml + contentElements[0].innerHTML);
                 var contentElement = fixIncludedHtml(includedPageUrl, elementToInclude, includedPageNewLevelForH1);
                 jsIncludeJqueryElement.html(contentElement);
+                fillAudioEmbeds();
+                fillVideoEmbeds();
                 updateToc();
             }
         },
