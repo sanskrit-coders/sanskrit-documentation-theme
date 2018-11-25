@@ -10,7 +10,7 @@ function absoluteUrl(base, relative) {
     if (relative.startsWith("/") && !base.startsWith("http") && !base.startsWith("file")) {
         return relative;
     }
-    var stack = base.split("/"),
+    var stack = base.toString().split("/"),
         parts = relative.split("/");
     stack.pop(); // remove current file name (or empty string)
                  // (omit if "base" is the current folder without trailing slash)
@@ -140,7 +140,7 @@ function fillJsInclude(jsIncludeJqueryElement, includedPageNewLevelForH1) {
                 var titleHtml = "";
                 if (jsIncludeJqueryElement.attr("includeTitle")) {
                     titleHtml = "<h1 id='" + title + "'>" + title + "</h1>" +
-                    "<a class='btn btn-default' href='" + includedPageUrl + "'>See separately</a>";
+                    "<a class='btn btn-default' href='" + absoluteUrl(document.location, includedPageUrl) + "'>See separately</a>";
                 }
                 elementToInclude.html(titleHtml + contentElements[0].innerHTML);
                 var contentElement = fixIncludedHtml(includedPageUrl, elementToInclude, includedPageNewLevelForH1);
