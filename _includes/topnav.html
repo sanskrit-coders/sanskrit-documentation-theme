@@ -11,7 +11,7 @@
                 {% assign topnav = site.data.sidebars[page.topnav] %}
                 <!-- {{topnav}} -->
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    <a href="#" class="btn btn-default"  data-toggle="dropdown">
                         {{ topnav.title }}
                         <b class="caret"></b></a>
                     <ul class="dropdown-menu">
@@ -43,7 +43,7 @@
                     <!--end search-->
                 </li>
                 <li>
-                    <a href=" {{ site.baseurl}}/assets/google-us.html">Google us!</a>
+                    <a class="btn btn-default" href="{{ site.baseurl}}/assets/google-us.html">Google us!</a>
                 </li>
             </ul>
         </div>

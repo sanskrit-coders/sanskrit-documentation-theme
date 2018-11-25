@@ -6,7 +6,9 @@
 .projectTitle {
   font-weight: bold;
   color: #ffffff;
-  vertical-align: bottom;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  vertical-align: center;
   // When you hover on the title in the navbar.
   &:hover{
     color: #f0f0f0;
@@ -78,12 +80,6 @@
 div.navbar-collapse .dropdown-menu > li > a:hover {
   background-color: #be8100;
 }
-
-.open .dropdown-toggle.btn-primary {
-  background-color: #be8100;
-  border-color: #be8100;
-}
-
 
 li.dropdownActive a {
   font-weight: bold;
