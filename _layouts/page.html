@@ -49,7 +49,10 @@ layout: default
 
     {% if site.github_editme_path %}
 
-    <a target="_blank" href="https://github.com/{{site.github_editme_path}}{{page.path}}" class="btn btn-default githubEditButton" role="button"><i class="fa fa-github fa-lg"></i> Edit me</a>
+    {% comment %}
+        btn and btn-default are bootstrap classes.
+    {% endcomment %}
+    <a target="_blank" href="https://github.com/{{site.github_editme_path}}{{page.path}}" class="btn btn-default" role="button"><i class="fa fa-github fa-lg"></i> Edit me</a>
 
     {% endif %}
 

@@ -139,7 +139,8 @@ function fillJsInclude(jsIncludeJqueryElement, includedPageNewLevelForH1) {
                 var elementToInclude = $("<div class='included-post-content'/>")
                 var titleHtml = "";
                 if (jsIncludeJqueryElement.attr("includeTitle")) {
-                    titleHtml = "<h1 id='" + title + "'>" + title + "</h1>";
+                    titleHtml = "<h1 id='" + title + "'>" + title + "</h1>" +
+                    "<a class='btn btn-default' href='" + includedPageUrl + "'>See separately</a>";
                 }
                 elementToInclude.html(titleHtml + contentElements[0].innerHTML);
                 var contentElement = fixIncludedHtml(includedPageUrl, elementToInclude, includedPageNewLevelForH1);
