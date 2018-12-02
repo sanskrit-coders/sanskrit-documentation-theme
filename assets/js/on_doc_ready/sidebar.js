@@ -9,7 +9,7 @@ function getSidebarItemHtml(sidebarItem) {
         urlTarget = "_newTab";
     }
     var list_item_css_class = "inactive";
-    if (pageSettings.url == item_url_stripped) {
+    if (pageSettings.url.replace("#[^/]*$", "") == item_url_stripped) {
         list_item_css_class = "active";
     }
     // console.debug(sidebarItem);
@@ -50,17 +50,19 @@ function insertSidebarItems() {
         $("#displayed_sidebar").append(getSidebarItemHtml(sidebarItem));
     }
     // this highlights the active parent class in the navgoco sidebar. this is critical so that the parent expands when you're viewing a page. 
-    $("li.active").parents('li').toggleClass("active");
+    $("li.active").parents('li').addClass("active");
+    $("li.active").parents('li').removeClass("inactive");
 }
 
 function insertTopnavDropdownItems() {
     var topnavDropdown = siteData.sidebars[pageSettings.topnav];
-    console.debug(topnavDropdown);
+    // console.debug(topnavDropdown);
     for (let item of topnavDropdown.contents) {
         $("#topnav_dropdown").append(getSidebarItemHtml(item));
     }
     // this highlights the active parent class in the navgoco sidebar. this is critical so that the parent expands when you're viewing a page. 
-    $("li.active").parents('li').toggleClass("active");
+    $("li.active").parents('li').addClass("active");
+    $("li.active").parents('li').removeClass("inactive");
 }
 
 $(document).ready(function() {
