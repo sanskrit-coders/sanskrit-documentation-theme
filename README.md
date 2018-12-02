@@ -20,6 +20,8 @@ Some notable things you get with this theme (in decreasing order of interest):
 - Special formatting consideration for fonts which need to be displayed bigger (eg: Devanagari for sanskrit.)
 - the usual Jekyll blog.
   - Post tag support
+- Portability
+  - We try to minimize the use of liquid templating language in favor of accomplishing stuff (menus, tables of contents, page inclusions) with javascript. This makes it a bit easier to move to another static website generator like hugo in the future.
 
 ### Screenshots and examples
 - See this test site: <https://sanskrit-coders.github.io/sanskrit-documentation-theme/>!
