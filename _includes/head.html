@@ -25,31 +25,7 @@
 <!-- Anchor.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/2.0.0/anchor.min.js"></script>
 
-<!--Load some jekyll variables and data for use in javascript-->
-<script>
-    var sidebars = {{site.data.sidebars | jsonify}};
-    var pageUrlToTitle = {};
-    {% for site_page in site.pages %}
-        pageUrlToTitle["{{site_page.url}}"] = "{{site_page.title}}";  
-    {%endfor%};
-
-    // For directory listing:
-    var pageDirectoryToUrl = {};
-    for (var pageUrl in pageUrlToTitle) {
-        if(pageUrlToTitle.hasOwnProperty(pageUrl)) {
-            var dirPath = pageUrl.split("/").slice(0,-1).join("/");
-            if (pageDirectoryToUrl.hasOwnProperty(dirPath)) {
-                pageDirectoryToUrl[dirPath].push(pageUrl);
-            } else {
-                pageDirectoryToUrl[dirPath] = [pageUrl];
-            }
-        }
-    } 
-    console.debug(pageDirectoryToUrl);
-    
-    var page_sidebar = "{{page.sidebar}}";
-    var site_baseurl = "{{site.baseurl}}";
-</script>
+{% include jekyll_vars_to_js.html %}
 
 <script src="{{site.baseurl | append: "/assets/js/navgoco.js"}}"></script>
 <script src="{{ site.baseurl | append: "/assets/js/on_doc_ready/sidebar.js" }}"></script>

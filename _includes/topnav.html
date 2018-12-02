@@ -14,10 +14,7 @@
                     <a href="#" class="btn btn-default"  data-toggle="dropdown">
                         {{ topnav.title }}
                         <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                        {% for subitem in topnav.contents %}
-                        {% include /functions/recursive_item_to_list.html item=subitem level=1 %}
-                        {% endfor %}
+                    <ul id="topnav_dropdown" class="dropdown-menu">
                     </ul>
                 </li>
                 <!-- conditional logic to control which topnav appears for the audience defined in the configuration file.-->

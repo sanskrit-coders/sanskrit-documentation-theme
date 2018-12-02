@@ -1,0 +1,27 @@
+<!--Load some jekyll variables and data for use in javascript-->
+<script>
+    var siteData = {{site.data | jsonify}};
+    var siteBaseurl = "{{site.baseurl}}";
+    // console.debug(siteData);
+
+    var pageUrlToTitle = {};
+    {% for site_page in site.pages %}
+    pageUrlToTitle["{{site_page.url}}"] = "{{site_page.title}}";
+    {%endfor%};
+
+    // For directory listing:
+    var pageDirectoryToUrl = {};
+    for (var pageUrl in pageUrlToTitle) {
+        if(pageUrlToTitle.hasOwnProperty(pageUrl)) {
+            var dirPath = pageUrl.split("/").slice(0,-1).join("/");
+            if (pageDirectoryToUrl.hasOwnProperty(dirPath)) {
+                pageDirectoryToUrl[dirPath].push(pageUrl);
+            } else {
+                pageDirectoryToUrl[dirPath] = [pageUrl];
+            }
+        }
+    }
+
+    var pageSettings = {{page|jsonify}};
+    // console.debug(pageDirectoryToUrl);
+</script>
