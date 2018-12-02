@@ -91,6 +91,7 @@ defaults:
       permalink: /posts/:slug:output_ext
 # these are defaults used for the frontmatter for these file types
 
+
 timezone: America/Los_Angeles
 
 description: Sanskrit documentation theme- Test site.
