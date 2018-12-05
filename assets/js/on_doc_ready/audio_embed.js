@@ -19,8 +19,8 @@ function mp3Embed(audioEmbedTag) {
             if(loop==1) newInnerHTML += ' loop';
             if(controls==1) newInnerHTML += ' controls';
             newInnerHTML += '><source src="'+srcParts[0]+'" type="audio/mpeg">Your browser does not support the audio element, but here is <a href="' + srcParts[0] + '">a link.</a></audio>';
-            if(!caption.empty()) {
-                newInnerHTML += `(${caption})`
+            if(caption) {
+                newInnerHTML += `(${caption})`;
             }
             audioEmbedTag.innerHTML = newInnerHTML;
         }

@@ -7,4 +7,4 @@ title: Media embedding test
 
 
 ## Mp3
-<div class="audioEmbed" src="https://archive.org/download/KrishnaYajurvedaCompleteAudioKannadaText/YajurvedaPart11.mp3"></div>
+<div class="audioEmbed" src="https://archive.org/download/KrishnaYajurvedaCompleteAudioKannadaText/YajurvedaPart11.mp3" caption="Some caption"></div>
