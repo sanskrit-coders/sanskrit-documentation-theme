@@ -1,5 +1,6 @@
 function mp3Embed(audioEmbedTag) {
     var src = audioEmbedTag.getAttribute( "src" );
+    var caption = audioEmbedTag.getAttribute( "caption" );
     if(src.indexOf('.mp3') !== -1) {
         var srcParts = src.split('?');
         if(srcParts.length == 1) srcParts[1] = '';
@@ -18,6 +19,9 @@ function mp3Embed(audioEmbedTag) {
             if(loop==1) newInnerHTML += ' loop';
             if(controls==1) newInnerHTML += ' controls';
             newInnerHTML += '><source src="'+srcParts[0]+'" type="audio/mpeg">Your browser does not support the audio element, but here is <a href="' + srcParts[0] + '">a link.</a></audio>';
+            if(!caption.empty()) {
+                newInnerHTML += `(${caption})`
+            }
             audioEmbedTag.innerHTML = newInnerHTML;
         }
     }
