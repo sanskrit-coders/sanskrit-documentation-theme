@@ -50,7 +50,7 @@ Steps:
 ### Search / webmaster tips
 - sitemap.xml can be explicitly submitted to various search engines.
 
-###‌ Pick up theme updates
+### Pick up theme updates
 If you are using the `remote-theme` method described above, github might not automatically pick up changes made to the theme and regenerate your site. To force github to regenerate your site, a tip from [here](https://github.com/benbalter/jekyll-remote-theme/issues/16):
 `git commit --allow-empty -m "Force rebuild of site"; git push`
 
