@@ -18,7 +18,8 @@ function getSidebarItemHtml(sidebarItem) {
         for(let subitem of sidebarItem.contents) {
             contentHtml = `${contentHtml}\n ${getSidebarItemHtml(subitem)}`;
         }
-        var itemHtml = `<li><a href="${item_url_stripped}"> ${sidebarItem.title}</a>\n<ul>${contentHtml}\n</ul>\n</li>\n`;
+        var title = sidebarItem.title || pageUrlToTitle[sidebarItem.url];
+        var itemHtml = `<li><a href="${item_url_stripped}"> ${title}</a>\n<ul>${contentHtml}\n</ul>\n</li>\n`;
     } else if (sidebarItem.url.startsWith("dir://")) {
         var dirUrl = sidebarItem.url.replace("dir://", "/");
         if (dirUrl.endsWith("/")) {
@@ -49,7 +50,7 @@ function insertSidebarItems() {
     for (let sidebarItem of sidebar.contents) {
         $("#displayed_sidebar").append(getSidebarItemHtml(sidebarItem));
     }
-    // this highlights the active parent class in the navgoco sidebar. this is critical so that the parent expands when you're viewing a page. 
+    // this highlights the active parent class in the navgoco sidebar. this is critical so that the parent expands when you're viewing a page.
     $("li.active").parents('li').addClass("active");
     $("li.active").parents('li').removeClass("inactive");
 }
@@ -60,7 +61,7 @@ function insertTopnavDropdownItems() {
     for (let item of topnavDropdown.contents) {
         $("#topnav_dropdown").append(getSidebarItemHtml(item));
     }
-    // this highlights the active parent class in the navgoco sidebar. this is critical so that the parent expands when you're viewing a page. 
+    // this highlights the active parent class in the navgoco sidebar. this is critical so that the parent expands when you're viewing a page.
     $("li.active").parents('li').addClass("active");
     $("li.active").parents('li').removeClass("inactive");
 }
@@ -116,4 +117,3 @@ $(document).ready(function() {
     $("#tg-sb-link").click(toggleSidebar);
     $("#hide-sb-link").click(toggleSidebar);
 });
-
