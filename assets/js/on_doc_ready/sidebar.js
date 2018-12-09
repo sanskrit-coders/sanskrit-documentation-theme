@@ -18,7 +18,7 @@ function getSidebarItemHtml(sidebarItem) {
         for(let subitem of sidebarItem.contents) {
             contentHtml = `${contentHtml}\n ${getSidebarItemHtml(subitem)}`;
         }
-        var title = sidebarItem.title || pageUrlToTitle[sidebarItem.url];
+        var title = sidebarItem.title || pageUrlToTitle[item_url_stripped];
         var itemHtml = `<li><a href="${item_url_stripped}"> ${title}</a>\n<ul>${contentHtml}\n</ul>\n</li>\n`;
     } else if (sidebarItem.url.startsWith("dir://")) {
         var dirUrl = sidebarItem.url.replace("dir://", "/");
@@ -37,7 +37,7 @@ function getSidebarItemHtml(sidebarItem) {
         }
     }
     else {
-        var title = sidebarItem.title || pageUrlToTitle[sidebarItem.url];
+        var title = sidebarItem.title || pageUrlToTitle[item_url_stripped];
         var itemHtml = `<li class="${list_item_css_class}"><a href="${siteBaseurl + item_url_stripped }" target="">${title}</a></li>`;
     }
     return itemHtml;

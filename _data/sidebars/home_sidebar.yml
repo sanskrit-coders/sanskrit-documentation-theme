@@ -4,8 +4,7 @@ title: Parts
 contents:
   - title: Home - Intro
     url: /index.html
-  - title: देवनागर्युदाहरणम्
-    url: /subfolder2/dummy_devanagari.html
+  - url: /subfolder2/dummy_devanagari.md
   - title: list subfolder1/paravastu-saama
     contents:
       - url: dir://subfolder1/paravastu-saama
