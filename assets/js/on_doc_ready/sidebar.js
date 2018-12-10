@@ -2,7 +2,7 @@ $('#displayed_sidebar').height($(".nav").height());
 
 function getSidebarItemHtml(sidebarItem) {
     var item_url_stripped = sidebarItem.url || "#";
-    item_url_stripped = item_url_stripped.replace("index.html", "").replace(".md", ".html");
+    item_url_stripped = item_url_stripped.replace("index.html", "").replace("index.md", "").replace(".md", ".html");
 
     var urlTarget = "";
     if (item_url_stripped.startsWith("http://") || item_url_stripped.startsWith("https://") || item_url_stripped.startsWith("ftp://")) {
