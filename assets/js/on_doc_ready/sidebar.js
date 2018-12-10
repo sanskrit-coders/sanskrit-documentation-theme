@@ -8,6 +8,7 @@ function getSidebarItemHtml(sidebarItem) {
     if (item_url_stripped.startsWith("http://") || item_url_stripped.startsWith("https://") || item_url_stripped.startsWith("ftp://")) {
         urlTarget = "_newTab";
     }
+    // console.debug(item_url_stripped);
     var list_item_css_class = "inactive";
     if (pageSettings.url.replace("#[^/]*$", "") == item_url_stripped) {
         list_item_css_class = "active";
