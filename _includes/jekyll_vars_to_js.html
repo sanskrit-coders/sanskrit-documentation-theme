@@ -9,16 +9,6 @@
     pageUrlToTitle["{{site_page.url}}"] = "{{site_page.title}}";
     {%endfor%};
 
-    // Special handling for index pages.
-    for (var pageUrl in pageUrlToTitle) {
-        if (pageUrl.endsWith("index.html") || pageUrl.endsWith("index.htm") ) {
-            var dirPath = pageUrl.split("/").slice(0,-1).join("/");
-            pageUrlToTitle[dirPath] = pageUrlToTitle[pageUrl];
-        } else if (pageUrl.endsWith("/")) {
-            pageUrlToTitle[pageUrl + "index.html"] = pageUrlToTitle[pageUrl];
-        }
-    }
-
         // For directory listing:
     var pageDirectoryToUrl = {};
     for (var pageUrl in pageUrlToTitle) {
