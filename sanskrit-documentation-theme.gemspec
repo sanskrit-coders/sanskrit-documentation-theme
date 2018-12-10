@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |spec|
   spec.name          = "sanskrit-documentation-theme"
-  spec.version       = "0.1.6"
+  spec.version       = "0.1.7"
   spec.authors       = ["vvasuki"]
   spec.email         = ["sanskrit-programmers@googlegroups.com"]
 
