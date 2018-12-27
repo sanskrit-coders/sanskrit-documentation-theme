@@ -99,11 +99,6 @@ $( document ).ready(function() {
         $( "#displayed_sidebar" ).attr("class", "nav affix");
     }
 
-    /**
-     * AnchorJS
-     */
-    anchors.add('h2,h3,h4,h5');
-
 });
 
 // Code to make the "Nav" button, which toggles the sidebar.

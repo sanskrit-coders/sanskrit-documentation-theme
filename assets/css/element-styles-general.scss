@@ -2,7 +2,7 @@
 ---
   // The dashes above are required by jekyll.
   // This file generates a css.
-  
+
 /*Some general styles*/
 
 hr {
@@ -42,15 +42,6 @@ button.cursorNorm {
 /* this part adds an icon after external links, using FontAwesome*/
 
 a {
-  &[href^="http://"]:after, &[href^="https://"]:after {
-    content: "\f08e";
-    font-family: FontAwesome;
-    font-weight: normal;
-    font-style: normal;
-    display: inline-block;
-    text-decoration: none;
-    padding-left: 3px;
-  }
   &[href].noCrossRef::after, &.no_icon:after {
     content: "" !important;
     padding-left: 0;

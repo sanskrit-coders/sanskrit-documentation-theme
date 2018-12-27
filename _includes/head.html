@@ -5,11 +5,10 @@
 <meta name="keywords" content="{{page.tags}}{% if page.tags %}, {% endif %} {{page.keywords}}">
 <title>{{ page.title }} | {{ site.site_title }}</title>
 
+<link rel="stylesheet" type="text/css" href="{{site.baseurl | append: "/assets/node_modules/@fortawesome/fontawesome-free/css/fontawesome.min.css"}}">
+<link rel="stylesheet" type="text/css" href="{{site.baseurl | append: "/assets/node_modules/@fortawesome/fontawesome-free/css/solid.min.css"}}">
 <!--bootstrap is used to set auto-adjusting (sidebar+content) grid column widths.-->
-<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="{{site.baseurl | append: "/assets/css/modern-business.css"}}">
-<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link rel="stylesheet" href="{{site.baseurl | append: "/assets/node_modules/bootstrap/dist/css/bootstrap.min.css"}}">
 <link rel="stylesheet" href="{{site.baseurl | append: "/assets/css/fonts.css"}}">
 <link rel="stylesheet" href="{{site.baseurl | append: "/assets/css/element-styles-general.css"}}">
 <link rel="stylesheet" href="{{site.baseurl | append: "/assets/css/class-styles-general.css"}}">
@@ -19,11 +18,10 @@
 <link rel="stylesheet" href="{{site.baseurl | append: "/assets/css/embeds.css"}}">
 <link rel="stylesheet" href="{{site.baseurl | append: "/assets/css/boxshadowproperties.css"}}">
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<!-- Latest compiled and minified JavaScript. Note that this requires jquery. -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-<!-- Anchor.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/2.0.0/anchor.min.js"></script>
+<script src="{{site.baseurl | append: "/assets/node_modules/jquery/dist/jquery.min.js" }}"></script>
+<!-- Note that this requires jquery. -->
+<script src="{{site.baseurl | append: "/assets/node_modules/bootstrap/dist/js/bootstrap.min.js" }}"></script>
+<script src="{{site.baseurl | append: "/assets/node_modules/mathjax/MathJax.js" }}" ></script>
 
 {% include jekyll_vars_to_js.html %}
 
@@ -44,6 +42,3 @@
 <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
 {{site.google_webmaster_verification_tag}}
-<script type="text/javascript"
-        src="https://cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-</script>
