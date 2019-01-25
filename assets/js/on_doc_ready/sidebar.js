@@ -4,9 +4,12 @@ function getSidebarItemHtml(sidebarItem) {
     var item_url_stripped = sidebarItem.url || "#";
     item_url_stripped = item_url_stripped.replace("index.html", "").replace("index.md", "").replace(".md", ".html");
 
+    
     var urlTarget = "";
+    var destination_url = `${siteBaseurl + item_url_stripped }`;
     if (item_url_stripped.startsWith("http://") || item_url_stripped.startsWith("https://") || item_url_stripped.startsWith("ftp://")) {
         urlTarget = "_newTab";
+        destination_url = item_url_stripped;
     }
     // console.debug(item_url_stripped);
     var list_item_css_class = "inactive";
@@ -40,7 +43,7 @@ function getSidebarItemHtml(sidebarItem) {
     }
     else {
         var title = sidebarItem.title || pageUrlToTitle[item_url_stripped];
-        var itemHtml = `<li class="${list_item_css_class}"><a href="${siteBaseurl + item_url_stripped }" target="">${title}</a></li>`;
+        var itemHtml = `<li class="${list_item_css_class}"><a href="${destination_url}" target="">${title}</a></li>`;
     }
     return itemHtml;
 }

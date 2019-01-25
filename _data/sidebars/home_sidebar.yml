@@ -8,6 +8,8 @@ contents:
   - title: list subfolder1/paravastu-saama
     contents:
       - url: dir://subfolder1/paravastu-saama
+  - title: Code
+    url: https://sanskrit-coders.github.io/site/
   - title: list subfolder1
     contents:
     - url: dir://subfolder1/
