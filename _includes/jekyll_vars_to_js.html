@@ -1,6 +1,7 @@
 <!--Load some jekyll variables and data for use in javascript-->
 <script>
     var siteData = {{site.data | jsonify}};
+    if("_data" in siteData) {siteData = siteData["_data"];}
     var siteBaseurl = "{{site.baseurl}}";
     // console.debug(siteData);
 
